@@ -1,0 +1,205 @@
+---
+
+category:
+  options:
+    orderBy: name ASC
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name: string(255)
+
+location:
+  options:
+    orderBy: name ASC
+  actAs: 
+    Timestampable: true
+    NestedSet:
+      hasManyRoots: true
+      rootColumnName: root_id
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name: string(255)
+    description: string
+
+locationAccessory: # This table can be used to list what accomodations/items a location can provide
+  actAs: [Timestampable]
+  options:
+    orderBy: name ASC
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    location_id: integer
+    name: string(128)
+  relations:
+    location: {local: location_id, foreign: id, foreignAlias: accessories}
+
+locationUser:
+  columns:
+    user_id: integer
+    location_id: integer
+  relations:
+    user: {local: user_id, foreign: id, foreignAlias: locations}
+    location: {local: location_id, foreign: id, foreignAlias: users}
+
+arranger:
+  actAs: [Timestampable]
+  options:
+    orderBy: name ASC
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name: string(255)
+    description: string
+
+arrangerUser:
+  columns:
+    user_id: integer
+    arranger_id: integer
+  relations:
+    user: {local: user_id, foreign: id, foreignAlias: arrangers}
+    arranger: {local: arranger_id, foreign: id, foreignAlias: users}
+
+user:
+  actAs: [Timestampable]
+  options:
+    orderBy: name ASC
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    username: string(64)
+    name: string(255)
+    email: string(255)
+    password: string(40)
+    is_admin:
+      type: boolean
+      default: false
+      notnull: true
+    is_active:
+      type: boolean
+      default: true
+      notnull: true
+
+loginLog:
+  options:
+    orderBy: timestamp DESC
+  columns:
+    user_id: integer
+    timestamp: timestamp
+    ip: string(15)
+    type: integer
+  relations:
+    user: {local: user_id, foreign: id, foreignAlias: loginLog}
+  indexes:
+    users:
+      fields: [user_id]
+
+discussionCategory:
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    name: string(64)
+
+discussion: # This table will be used for discussions about events,
+            # eg. requirements, contracts. It will be possible to
+            # assign categories (or topics) so that relevant parts
+            # of the discussion will go interested parties.
+  actAs: [Timestampable]
+  options:
+    orderBy: created_at ASC
+  columns:
+    id:
+      type: integer
+      primary: true
+      autoincrement: true
+    event_id: integer
+    user_id: integer
+    # You can specify a discussion category, but it's not required.
+    # Discussion category makes it easy for bokers to set up requirements for the event.
+    discussionCategory_id: {type: integer, default: null}
+    title: string(255)
+    message: string
+  relations:
+    event: {local: event_id, foreign: id, foreignAlias: discussion}
+    user: {local: user_id, foreign: id}
+    discussionCategory: {local: discussionCategory_id, foreign: id, foreignAlias: discussion}
+
+discussionUser: # This table will hold all participants in a discussion
+  actAs: [Timestampable]
+  columns:
+    user_id: integer
+    event_id: integer
+    # Status can be eg. participant or observer
+    status: {type: integer, default: 1}
+  relations:
+    user: {local: user_id, foreign: id, foreignAlias: discussionUsers}
+    event: {local: event_id, foreign: id, foreignAlias: discussionUsers}
+
+calendar: # This table will hold calendar names and other data.
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer
+      primary: true
+      notnull: true
+      autoincrement: true
+    name: string(255)
+
+
+event: # This table will hold all events.
+  actAs: [Timestampable]
+  options:
+    orderBy: [startDate ASC, startTime ASC, title ASC]
+  columns:
+    id:
+      type: integer
+      notnull: true
+      primary: true
+      autoincrement: true
+#    parentEvent_id: # parentEvent allows you to organize a festival and connect events to the festival.
+#      type: integer
+#      notnull: false
+#      default: null
+    title: string(255)
+    description: string
+    customLocation: {type: string(255), notnull: false}
+    linkout: {type: string(255), notnull: false}
+    startDate: date
+    startTime: time
+    endDate: date
+    endTime: time
+    accessLevel: string(255)
+    # If an event has been accepted by a user in locationUser, if the location_id is connected to a user
+    is_accepted: {type: boolean, default: true}
+    is_public: {type: boolean, default: false}
+    location_id: integer # This will be used for locations that recur, instead of manually typing locations.
+    category_id: {type: integer, notnull: true}
+    arranger_id: {type: integer, notnull: true}
+    user_id: {type: integer, notnull: true}
+  relations:
+    arranger: {local: arranger_id, foreign: id, foreignAlias: events}
+    recurringLocation: {class: location, local: location_id, foreign: id, foreignAlias: events}
+    category: {local: category_id, foreign: id, foreignAlias: events}
+    user: {class: user, local: user_id, foreign: id, foreignAlias: events}
+#    parentEvent: {class: event, local: parentEvent_id, foreign: id, foreignAlias: childEvents}
+  indexes:
+    locations:
+      fields: [location_id]
+    arrangers:
+      fields: [arranger_id]
+    categories:
+      fields: [category_id]
