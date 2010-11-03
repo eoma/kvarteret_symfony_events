@@ -11,6 +11,10 @@ from http://sf-to.org/1.4/check.php and put it somewhere. If you've got shell ac
 run the command
 > php check_configuration.php
 
+In the project directory, you can run the command
+> sh setup.sh
+to take care of most of the following steps.
+
 When you've successfully cloned the repository, go into the repository and run the commands
 > git submodules init
 > git submodules update
