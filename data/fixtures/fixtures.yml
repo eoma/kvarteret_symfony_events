@@ -4,14 +4,77 @@
 # # 
 # # See documentation for your ORM's *:data-load task for more information.
 # 
-# User:
-#   fabien:
-#     username: fabien
-#     password: changeme
-#     name:     Fabien Potencier
-#     email:    fabien.potencier@symfony-project.com
-#   kris:
-#     username: Kris.Wallsmith
-#     password: changeme
-#     name:     Kris Wallsmith
-#     email:    kris.wallsmith@symfony-project.com
+
+category:
+  concert:
+    name: Konsert
+  debate:
+    name: Debatt
+
+location:
+  Kvarteret:
+    name: Kvarteret
+    description: Studentkulturhuset i Bergen
+    children:
+      Teglverket:
+        name: Teglverket
+        description: Teglverket
+      Tivoli:
+        name: Tivoli
+        description: Tivoli
+      Storelogen:
+        name: Storelogen
+        description: Storelogen
+      Maos:
+        name: Maos lille røde
+        description: Maos lille røde
+      Speilsalen:
+        name: Speilsalen
+        description: Speilsalen
+      Stoy:
+        name: Støy
+        description: Støy
+
+arranger:
+  Samfunnet:
+    name: Studentersamfunnet i Bergen
+  RF:
+    name: Realfagsforeningen
+  ASF:
+    name: Aktive Studenters Forening
+  Immaturus:
+    name: Immaturus
+  BF:
+    name: Bergen Filmklubb
+
+user:
+  admin:
+    username: admin
+    name: Administrator
+    email: eoma@kvarteret.no
+    password: changeme
+    is_admin: true
+  arranger:
+    username: arranger
+    name: Test Arranger
+    email: endre.oma@kvarteret.no
+    password: changeme
+  locationOwner:
+    username: locationOwner
+    name: Owner of Location
+    email: eom081@student.uib.no
+    password: changeme
+
+discussionCategory:
+  general:
+    name: Generelt
+
+locationUser:
+  locationTeglverket:
+    user: locationOwner
+    location: Teglverket
+
+arrangerUser:
+  arrangerSamfunnet:
+    user: arranger
+    arranger: Samfunnet
