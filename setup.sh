@@ -7,3 +7,4 @@ git submodule update
 mkdir cache/ log/
 php symfony project:permissions
 php symfony configure:database "sqlite:db.db"
+php symfony doctrine:build --all-classes --sql
