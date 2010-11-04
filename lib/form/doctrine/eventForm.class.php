@@ -12,5 +12,13 @@ class eventForm extends BaseeventForm
 {
   public function configure()
   {
+
+    unset(
+      $this['created_at'], $this['updated_at']
+    );
+
+    $this->setDefault('startDate', date('Y-m-d'));
+    $this->setDefault('endDate', date('Y-m-d'));
+
   }
 }
