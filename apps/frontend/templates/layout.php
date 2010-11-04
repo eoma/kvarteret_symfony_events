@@ -6,9 +6,20 @@
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
-    <?php include_javascripts() ?>
   </head>
   <body>
-    <?php echo $sf_content ?>
+    <div id="menu">
+      <a href="<?php echo url_for('homepage') ?>">Main</a>
+      <a href="<?php echo url_for('location/index') ?>">Locations</a>
+      <a href="<?php echo url_for('arranger/index') ?>">Arranger</a>
+      <a href="<?php echo url_for('category/index') ?>">Categories</a>
+    </div>
+    <div id="content">
+      <?php echo $sf_content ?>
+    </div>
+
+    <!-- Start include javascript -->
+    <?php include_javascripts() ?>
+    <!-- End include javascript -->
   </body>
 </html>
