@@ -6,6 +6,12 @@ homepage:
   url:   /
   param: { module: event, action: index }
 
+api:
+  url: /api/:sf_format/:action/*
+  param: { module: api }
+  requirements:
+    sf_format: (?:json|xml)
+
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
