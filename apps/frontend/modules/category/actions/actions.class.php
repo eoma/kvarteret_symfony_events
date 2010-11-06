@@ -19,12 +19,18 @@ class categoryActions extends sfActions
   {
     $this->categorys = Doctrine_Core::getTable('category')
       ->createQuery('a')
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
       ->execute();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->category = Doctrine_Core::getTable('category')->find(array($request->getParameter('id')));
+    $this->category = Doctrine_Core::getTable('category')
+      ->createQuery('c')
+      ->where('c.id = ?', $request->getParameter('id'))
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
+      ->fetchOne();
+
     $this->forward404Unless($this->category);
     $this->events = Doctrine_Core::getTable('event')
       ->createQuery('e')
@@ -35,6 +41,7 @@ class categoryActions extends sfActions
       ->andWhere('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
       ->limit(20)
       ->offset(0)
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
       ->execute();
   }
 }

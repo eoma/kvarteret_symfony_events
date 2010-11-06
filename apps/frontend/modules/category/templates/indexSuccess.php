@@ -11,9 +11,9 @@
   <tbody>
     <?php foreach ($categorys as $category): ?>
     <tr>
-      <td><a href="<?php echo url_for('category/show?id='.$category->getId()) ?>"><?php echo $category->getName() ?></a></td>
-      <td><?php echo $category->getCreatedAt() ?></td>
-      <td><?php echo $category->getUpdatedAt() ?></td>
+      <td><a href="<?php echo url_for('category/show?id='.$category['id']) ?>"><?php echo $category['name'] ?></a></td>
+      <td><?php echo $category['created_at'] ?></td>
+      <td><?php echo $category['updated_at'] ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
