@@ -21,52 +21,100 @@ class apiActions extends sfActions
   }
 
   public function executeGetArrangers(sfWebRequest $request) {
-    $arrangers = Doctrine_Core::getTable('arranger')
+    $limit = intval($request->getParameter('limit', 20));
+    $offset = 0;
+    if ($limit > 0) {
+      $offset = intval($request->getParameter('offset', 0));
+    }
+
+    $q = Doctrine_Core::getTable('arranger')
       ->createQuery('a')
       ->select('a.name, a.id')
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->execute();
+      ->limit($limit)
+      ->offset($offset)
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
 
-    //print_r($this->arrangers);
+    $arrangers = $q->execute();
 
     $this->forward404Unless($arrangers);
 
-    //$this->getResponse()->setHttpHeader('Content-type','application/json');
-    return $this->returnJson($arrangers);
-    //return $this->renderText(json_encode($arrangers));
+    $totalCount = $q->count();
+    $count = count($arrangers);
+
+    $data = array(
+      'limit' => $limit,
+      'offset' => $offset,
+      'count' => $count,
+      'totalCount' => $totalCount,
+      'data' => $arrangers,
+    );
+
+    return $this->returnJson($data);
   }
 
   public function executeGetCategories (sfWebRequest $request) {
-    $categories = Doctrine_Core::getTable('category')
+    $limit = intval($request->getParameter('limit', 20));
+    $offset = 0;
+    if ($limit > 0) {
+      $offset = intval($request->getParameter('offset', 0));
+    }
+
+    $q = Doctrine_Core::getTable('category')
       ->createQuery('c')
       ->select('c.name, c.id')
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->execute();
+      ->limit($limit)
+      ->offset($offset)
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
 
-    //print_r($this->arrangers);
-
+    $categories = $q->execute();
+    
     $this->forward404Unless($categories);
 
-    //$this->getResponse()->setHttpHeader('Content-type','application/json');
-    return $this->returnJson($categories);
-    //return $this->renderText(json_encode($arrangers));
+    $totalCount = $q->count();
+    $count = count($categories);
+
+    $data = array(
+      'limit' => $limit,
+      'offset' => $offset,
+      'count' => $count,
+      'totalCount' => $totalCount,
+      'data' => $categories,
+    );
+
+    return $this->returnJson($data);
   }
 
   public function executeGetLocations (sfWebRequest $request) {
-    $locations = Doctrine_Core::getTable('location')
+    $limit = intval($request->getParameter('limit', 20));
+    $offset = 0;
+    if ($limit > 0) {
+      $offset = intval($request->getParameter('offset', 0));
+    }
+
+    $q = Doctrine_Core::getTable('location')
       ->createQuery('l')
       //->select('l.name, l.id')
       ->where('l.root_id = ?', 1)
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY_HIERARCHY)
-      ->execute();
+      ->limit($limit)
+      ->offset($offset)
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY_HIERARCHY);
 
-    //print_r($this->locations);
+    $locations = $q->execute();
 
     $this->forward404Unless($locations);
 
-    //$this->getResponse()->setHttpHeader('Content-type','application/json');
-    return $this->returnJson($locations);
-    //return $this->renderText(json_encode($locations));
+    $totalCount = $q->count();
+    $count = count($locations);
+
+    $data = array(
+      'limit' => $limit,
+      'offset' => $offset,
+      'count' => $count,
+      'totalCount' => $totalCount,
+      'data' => $locations,
+    );
+
+    return $this->returnJson($data);
   }
 
   public function executeGetUpcomingEvents (sfWebRequest $request) {
@@ -78,7 +126,7 @@ class apiActions extends sfActions
       $offset = intval($request->getParameter('offset', 0));
     }
 
-    $events = Doctrine_Core::getTable('event')
+    $q = Doctrine_Core::getTable('event')
       ->createQuery('e')
       ->select('e.*, l.id, l.name, a.id, a.name, c.id, c.name')
       ->leftJoin('e.recurringLocation l')
@@ -87,11 +135,24 @@ class apiActions extends sfActions
       ->where('e.startDate >= ? OR e.endDate >= ?', date('Y-m-d'), date('Y-m-d'))
       ->limit($limit)
       ->offset($offset)
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->execute();
-    
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $events = $q->execute();
+
     $this->forward404Unless($events);
-    return $this->returnJson($events);
+
+    $totalCount = $q->count();
+    $count = count($events);
+
+    $data = array(
+      'limit' => $limit,
+      'offset' => $offset,
+      'count' => $count,
+      'totalCount' => $totalCount,
+      'data' => $events,
+    );
+
+    return $this->returnJson($data);
   }
 
   public function executeGetFilteredEvents (sfWebRequest $request) {
@@ -148,7 +209,19 @@ class apiActions extends sfActions
     $events = $q->execute();
 
     $this->forward404Unless($events);
-    return $this->returnJson($events);
+    
+    $totalCount = $q->count();
+    $count = count($events);
+
+    $data = array(
+      'limit' => $limit,
+      'offset' => $offset,
+      'count' => $count,
+      'totalCount' => $totalCount,
+      'data' => $events,
+    );
+
+    return $this->returnJson($data);
   }
 
   public function returnJson($data){
