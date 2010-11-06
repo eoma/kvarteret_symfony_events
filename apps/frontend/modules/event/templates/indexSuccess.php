@@ -16,19 +16,19 @@
   <tbody>
     <?php foreach ($events as $event): ?>
     <tr>
-      <td><a href="<?php echo url_for('event/show?id='.$event->getId()) ?>"><?php echo $event->getTitle() ?></a></td>
-      <td><?php echo $event->getDescription() ?></td>
+      <td><a href="<?php echo url_for('event/show?id='.$event['id']) ?>"><?php echo $event['title'] ?></a></td>
+      <td><?php echo $event['description'] ?></td>
       <td><?php 
-                if ( ! $event->getLocationId() ) 
-                  echo $event->getCustomLocation();
+                if ( ! $event['location_id'] ) 
+                  echo $event['customLocation'];
                 else 
-                  echo '<a href="' . url_for('location/show?id=' . $event->getLocationId()) . '">' . $event->getRecurringLocation() . '</a>';
+                  echo '<a href="' . url_for('location/show?id=' . $event['location_id']) . '">' . $event['recurringLocation']['name'] . '</a>';
           ?></td>
-      <td><?php echo $event->getLinkout() ?></td>
-      <td><?php echo $event->getStartDate() . ' ' .$event->getStartTime()  ?></td>
-      <td><?php echo $event->getEndDate() . ' ' . $event->getEndTime() ?></td>
-      <td><a href="<?php echo url_for('category/show?id=' . $event->getCategoryId()) ?>"><?php echo $event->getCategory() ?></a></td>
-      <td><a href="<?php echo url_for('arranger/show?id=' . $event->getArrangerId()) ?>"><?php echo $event->getArranger() ?></a></td>
+      <td><?php echo $event['linkout'] ?></td>
+      <td><?php echo $event['startDate'] . ' ' .$event['startTime']  ?></td>
+      <td><?php echo $event['endDate'] . ' ' . $event['endTime'] ?></td>
+      <td><a href="<?php echo url_for('category/show?id=' . $event['category_id']) ?>"><?php echo $event['category']['name'] ?></a></td>
+      <td><a href="<?php echo url_for('arranger/show?id=' . $event['arranger_id']) ?>"><?php echo $event['arranger']['name'] ?></a></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
