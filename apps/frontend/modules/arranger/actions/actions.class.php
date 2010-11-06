@@ -19,12 +19,18 @@ class arrangerActions extends sfActions
   {
     $this->arrangers = Doctrine_Core::getTable('arranger')
       ->createQuery('a')
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
       ->execute();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->arranger = Doctrine_Core::getTable('arranger')->find(array($request->getParameter('id')));
+    $this->arranger = Doctrine_Core::getTable('arranger')
+      ->createQuery('a')
+      ->where('a.id = ?', $request->getParameter('id'))
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
+      ->fetchOne();
+
     $this->forward404Unless($this->arranger);
     $this->events = Doctrine_Core::getTable('event')
       ->createQuery('e')
@@ -35,6 +41,7 @@ class arrangerActions extends sfActions
       ->andWhere('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
       ->limit(20)
       ->offset(0)
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
       ->execute();
   }
 }
