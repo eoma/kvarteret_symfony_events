@@ -45,6 +45,23 @@ rm sfDoctrineNestedSetPlugin-1.0.0.tgz
 
 cd $root_dir;
 
+# Download and setup ckeditor
+cd www;
+if [ ! -d js ]; then
+  mkdir js;
+fi;
+cd js;
+
+if [ -d ckeditor ]; then
+  rm -r ckeditor
+fi;
+
+wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.4.2/ckeditor_3.4.2.tar.gz
+tar -xzvf ckeditor_3.4.2.tar.gz
+rm ckeditor_3.4.2.tar.gz
+
+cd $root_dir;
+
 ### END SETUP OF PLUGINS ###
 
 php symfony project:permissions
