@@ -13,7 +13,12 @@ run the command
 
 In the project directory, you can run the command
 > sh setup.sh
-to take care of most of the following steps.
+to take care of most of the following steps and more.
+
+If you want to use sqlite, please make sure that the database file is writable and readable by you and the web server.
+You can do this on your private test server by issuing the command
+> chmod ugo+rw /path/to/db/file
+Do NOT do this on a shared hosting or production site if you're concerned about your data.
 
 When you've successfully cloned the repository, go into the repository and run the commands
 > git submodules init
