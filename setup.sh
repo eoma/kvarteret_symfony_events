@@ -46,7 +46,7 @@ rm sfDoctrineNestedSetPlugin-1.0.0.tgz
 cd $root_dir;
 
 # Download and setup ckeditor
-cd www;
+cd web;
 if [ ! -d js ]; then
   mkdir js;
 fi;
