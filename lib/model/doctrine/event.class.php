@@ -12,4 +12,18 @@
  */
 class event extends Baseevent
 {
+
+  /**
+   * Returns recurring location if location_id is set, 
+   * if not it will return custom location
+   */
+  public function getLocation ()
+  {
+    if (!$this->location_id) {
+      return $this->customLocation;
+    } else {
+      return $this->getRecurringLocation();
+    }
+  }
+
 }
