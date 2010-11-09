@@ -39,7 +39,7 @@ if [ -d sfDoctrineNestedSetPlugin ]; then
 fi;
 
 wget http://plugins.symfony-project.org/get/sfDoctrineNestedSetPlugin/sfDoctrineNestedSetPlugin-1.0.0.tgz
-tar -xzvf sfDoctrineNestedSetPlugin-1.0.0.tgz
+tar -xzf sfDoctrineNestedSetPlugin-1.0.0.tgz
 mv sfDoctrineNestedSetPlugin-1.0.0 sfDoctrineNestedSetPlugin
 rm sfDoctrineNestedSetPlugin-1.0.0.tgz
 
@@ -57,7 +57,7 @@ if [ -d ckeditor ]; then
 fi;
 
 wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.4.2/ckeditor_3.4.2.tar.gz
-tar -xzvf ckeditor_3.4.2.tar.gz
+tar -xzf ckeditor_3.4.2.tar.gz
 rm ckeditor_3.4.2.tar.gz
 
 cd $root_dir;
