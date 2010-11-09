@@ -10,7 +10,7 @@
     </tr>
     <tr>
       <th>Description:</th>
-      <td><?php echo $event['description'] ?></td>
+      <td><?php echo $event->getRaw('description') ?></td>
     </tr>
     <tr>
       <th>Custom location:</th>
