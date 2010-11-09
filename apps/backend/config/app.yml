@@ -3,3 +3,7 @@
 
 # default values
 #all:
+
+all:
+  ckeditor:
+    basePath: '/js/ckeditor/'
