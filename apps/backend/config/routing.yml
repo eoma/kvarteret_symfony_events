@@ -1,6 +1,15 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+arranger:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                arranger
+    module:               arranger
+    prefix_path:          /arranger
+    column:               id
+    with_wildcard_routes: true
+
 # default rules
 homepage:
   url:   /
