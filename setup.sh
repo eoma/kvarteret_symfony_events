@@ -9,11 +9,11 @@ git submodule update
 mkdir cache/ log/
 
 #  We'll be using the sfDoctrinePlugin's web resources
-if [ -d lib/vendor/symfony/lib/plugins/sfDoctrinePlugin ]; then
+if [ -d lib/vendor/symfony/lib/plugins/sfDoctrinePlugin/web ]; then
   if [ ! -h web/sfDoctrinePlugin ]; then
     cd web/;
 
-    ln -s ../lib/vendor/symfony/lib/plugins/sfDoctrinePlugin sfDoctrinePlugin;
+    ln -s ../lib/vendor/symfony/lib/plugins/sfDoctrinePlugin/web sfDoctrinePlugin;
 
     cd ..;
   else
