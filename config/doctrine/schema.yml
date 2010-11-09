@@ -12,8 +12,9 @@ category:
     name: string(255)
 
 location:
-  options:
-    orderBy: name ASC
+# When using the nested set module, it's not possible to sort by any other field than the ones used by nested set
+#  options:
+#    orderBy: name ASC
   actAs: 
     Timestampable: true
     NestedSet:
