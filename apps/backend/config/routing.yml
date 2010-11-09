@@ -10,6 +10,15 @@ arranger:
     column:               id
     with_wildcard_routes: true
 
+category:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                category
+    module:               category
+    prefix_path:          /category
+    column:               id
+    with_wildcard_routes: true
+
 # default rules
 homepage:
   url:   /
