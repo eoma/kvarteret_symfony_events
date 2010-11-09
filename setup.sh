@@ -31,9 +31,9 @@ fi;
 
 ### BEGIN SETUP OF PLUGINS ###
 
+# Download and setup sfDoctrineNestedSetPlugin, remove previous version if set.
 cd plugins;
 
-# Download and setup sfDoctrineNestedSetplugin, remove previous version if set.
 if [ -d sfDoctrineNestedSetPlugin ]; then
   rm -r sfDoctrineNestedSetPlugin;
 fi;
@@ -41,8 +41,9 @@ fi;
 wget http://plugins.symfony-project.org/get/sfDoctrineNestedSetPlugin/sfDoctrineNestedSetPlugin-1.0.0.tgz
 tar -xzvf sfDoctrineNestedSetPlugin-1.0.0.tgz
 mv sfDoctrineNestedSetPlugin-1.0.0 sfDoctrineNestedSetPlugin
+rm sfDoctrineNestedSetPlugin-1.0.0.tgz
 
-cd ..;
+cd $root_dir;
 
 ### END SETUP OF PLUGINS ###
 
