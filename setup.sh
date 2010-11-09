@@ -21,6 +21,29 @@ else
   echo "!!! Symfony was not checked out successfully !!!";
 fi;
 
+# Make sure the plugins directory exist
+if [ ! -d plugins/ ]; then
+  mkdir plugins;
+fi;
+
+
+### BEGIN SETUP OF PLUGINS ###
+
+cd plugins;
+
+# Download and setup sfDoctrineNestedSetplugin, remove previous version if set.
+if [ -d sfDoctrineNestedSetPlugin ]; then
+  rm -r sfDoctrineNestedSetPlugin;
+fi;
+
+wget http://plugins.symfony-project.org/get/sfDoctrineNestedSetPlugin/sfDoctrineNestedSetPlugin-1.0.0.tgz
+tar -xzvf sfDoctrineNestedSetPlugin-1.0.0.tgz
+mv sfDoctrineNestedSetPlugin-1.0.0 sfDoctrineNestedSetPlugin
+
+cd ..;
+
+### END SETUP OF PLUGINS ###
+
 php symfony project:permissions
 php symfony configure:database "sqlite:db.db"
 php symfony doctrine:build --all-classes --sql
