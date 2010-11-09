@@ -1,0 +1,27 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           event
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          event
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        is_public: { label: Public?, help: Whether the event is public to the world }
+      list:
+        title: Eventlist
+        sort: [startDate, desc]
+        display: [=title, location, startDate, startTime, endDate, endTime]
+      filter:  ~
+      form:    ~
+      edit:
+        title: Editing event "%%title%%"
+      new:
+        title: Create new event
