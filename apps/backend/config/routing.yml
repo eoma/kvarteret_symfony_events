@@ -10,6 +10,15 @@ location:
     column:               id
     with_wildcard_routes: true
 
+event:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                event
+    module:               event
+    prefix_path:          /event
+    column:               id
+    with_wildcard_routes: true
+
 arranger:
   class: sfDoctrineRouteCollection
   options:
