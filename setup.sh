@@ -82,5 +82,12 @@ cd $root_dir
 ### END SETUP OF PLUGINS ###
 
 php symfony project:permissions
-php symfony configure:database "sqlite:db.db"
+
+# We'll confgiure the database if the configuration
+# does not exist
+
+if [ ! -e config/databases.yml ]; then
+  php symfony configure:database "sqlite:db.db";
+fi;
+
 php symfony doctrine:build --all-classes --sql
