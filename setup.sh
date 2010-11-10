@@ -65,6 +65,20 @@ rm ckeditor_3.4.2.tar.gz
 
 cd $root_dir;
 
+# Download and setup htmlpurifier
+cd lib/vendor;
+
+if [ -d htmlpurifier ]; then
+  rm -rf htmlpurifier
+fi;
+
+wget http://htmlpurifier.org/releases/htmlpurifier-4.2.0.tar.gz
+tar -xzf htmlpurifier-4.2.0.tar.gz
+mv htmlpurifier-4.2.0 htmlpurifier
+rm htmlpurifier-4.2.0.tar.gz
+
+cd $root_dir
+
 ### END SETUP OF PLUGINS ###
 
 php symfony project:permissions
