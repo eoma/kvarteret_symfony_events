@@ -7,9 +7,6 @@ git submodule init
 git submodule update
 
 mkdir cache/ log/
-chmod -R ugo+rw cache
-chmod -R ugo+rw log
-
 
 #  We'll be using the sfDoctrinePlugin's web resources
 if [ -d lib/vendor/symfony/lib/plugins/sfDoctrinePlugin/web ]; then
@@ -82,6 +79,11 @@ cd $root_dir
 ### END SETUP OF PLUGINS ###
 
 php symfony project:permissions
+
+# We make sure we can delete the contents of the cache by setting the
+# sgid and suid bit
+chmod -R a+rws cache
+chmod -R a+rws log
 
 # We'll confgiure the database if the configuration
 # does not exist
