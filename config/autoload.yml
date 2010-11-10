@@ -3,3 +3,8 @@ autoload:
     name:       ckeditor
     path:       %SF_WEB_DIR%/js/ckeditor/
     recursive:  on
+
+  htmlpurifier:
+    name:       htmlpurifier
+    path:       %SF_LIB_DIR%/vendor/htmlpurifier/library
+    recursive:  on
