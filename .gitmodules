@@ -4,3 +4,6 @@
 [submodule "plugins/sfCKEditorPlugin"]
 	path = plugins/sfCKEditorPlugin
 	url = git://github.com/weaverryan/sfCKEditorPlugin.git
+[submodule "plugins/sfDoctrineGuardPlugin"]
+	path = plugins/sfDoctrineGuardPlugin
+	url = https://github.com/nerium/sfDoctrineGuardPlugin.git
