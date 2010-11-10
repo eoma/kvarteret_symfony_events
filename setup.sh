@@ -7,6 +7,9 @@ git submodule init
 git submodule update
 
 mkdir cache/ log/
+chmod -R ugo+rw cache
+chmod -R ugo+rw log
+
 
 #  We'll be using the sfDoctrinePlugin's web resources
 if [ -d lib/vendor/symfony/lib/plugins/sfDoctrinePlugin/web ]; then
