@@ -47,7 +47,7 @@ locationUser:
     user_id: integer
     location_id: integer
   relations:
-    user: {local: user_id, foreign: id, foreignAlias: locations}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locations}
     location: {local: location_id, foreign: id, foreignAlias: users}
 
 arranger:
@@ -67,30 +67,8 @@ arrangerUser:
     user_id: integer
     arranger_id: integer
   relations:
-    user: {local: user_id, foreign: id, foreignAlias: arrangers}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: arrangers}
     arranger: {local: arranger_id, foreign: id, foreignAlias: users}
-
-user:
-  actAs: [Timestampable]
-  options:
-    orderBy: name ASC
-  columns:
-    id:
-      type: integer
-      primary: true
-      autoincrement: true
-    username: { type: string(64), notnull: true }
-    name: { type: string(255), notnull: true }
-    email: { type: string(255), notnull: true }
-    password: { type: string(255), notnull: true }
-    is_admin:
-      type: boolean
-      default: false
-      notnull: true
-    is_active:
-      type: boolean
-      default: true
-      notnull: true
 
 loginLog:
   options:
@@ -101,7 +79,7 @@ loginLog:
     ip: string(15)
     type: integer
   relations:
-    user: {local: user_id, foreign: id, foreignAlias: loginLog}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: loginLog}
   indexes:
     users:
       fields: [user_id]
@@ -136,7 +114,7 @@ discussion: # This table will be used for discussions about events,
     message: string
   relations:
     event: {local: event_id, foreign: id, foreignAlias: discussion}
-    user: {local: user_id, foreign: id}
+    user: {class: sfGuardUser, local: user_id, foreign: id}
     discussionCategory: {local: discussionCategory_id, foreign: id, foreignAlias: discussion}
 
 discussionUser: # This table will hold all participants in a discussion
@@ -147,7 +125,7 @@ discussionUser: # This table will hold all participants in a discussion
     # Status can be eg. participant or observer
     status: {type: integer, default: 1}
   relations:
-    user: {local: user_id, foreign: id, foreignAlias: discussionUsers}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: discussionUsers}
     event: {local: event_id, foreign: id, foreignAlias: discussionUsers}
 
 calendar: # This table will hold calendar names and other data.
@@ -195,7 +173,7 @@ event: # This table will hold all events.
     arranger: {local: arranger_id, foreign: id, foreignAlias: events}
     recurringLocation: {class: location, local: location_id, foreign: id, foreignAlias: events}
     category: {local: category_id, foreign: id, foreignAlias: events}
-    user: {class: user, local: user_id, foreign: id, foreignAlias: events}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: events}
 #    parentEvent: {class: event, local: parentEvent_id, foreign: id, foreignAlias: childEvents}
   indexes:
     locations:
