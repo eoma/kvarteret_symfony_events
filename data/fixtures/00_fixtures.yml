@@ -47,23 +47,41 @@ arranger:
   BF:
     name: Bergen Filmklubb
 
-user:
-  admin:
-    username: admin
-    name: Administrator
-    email: eoma@kvarteret.no
-    password: changeme
-    is_admin: true
-  arranger:
-    username: arranger
-    name: Test Arranger
-    email: endre.oma@kvarteret.no
-    password: changeme
+# Setup a few dummy users to get us rolling
+sfGuardUser:
+  User_admin:
+    first_name:     Ola
+    last_name:      Nordmann
+    email_address:  ola.nordmann@example.com
+    username:       admin
+    password:       changeme
+    is_super_admin: true
+    Groups:         [Group_admin]
   locationOwner:
-    username: locationOwner
-    name: Owner of Location
-    email: eom081@student.uib.no
-    password: changeme
+    first_name:     Location
+    last_name:      Owner
+    email_address:  location.owner@example.com
+    username:       locationOwner
+    password:       changeme
+    is_super_admin: false
+  arranger:
+    first_name:     Arranger
+    last_name:      of Culture
+    email_address:  arranger@example.com
+    username:       arranger
+    password:       changeme
+    is_super_admin: false
+
+sfGuardGroup:
+  Group_admin:
+    name:           admin
+    description:    Administrator group
+    Permissions:    [Permission_admin]
+
+sfGuardPermission:
+  Permission_admin:
+    name:           admin
+    description:    Administrator permission
 
 discussionCategory:
   general:

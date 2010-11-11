@@ -8,7 +8,7 @@ event:
     recurringLocation: Teglverket
     arranger: RF
     category: concert
-    user: admin
+    user: User_admin
     is_public: true
   testEvent2: 
     title: Another testevent with custom location
@@ -31,5 +31,5 @@ event:
     recurringLocation: Tivoli
     arranger: RF
     category: debate
-    user: admin
+    user: User_admin
     is_public: true
