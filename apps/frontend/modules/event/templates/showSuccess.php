@@ -1,76 +1,46 @@
-<table>
-  <tbody>
-    <tr>
-      <th>Id:</th>
-      <td><?php echo $event['id'] ?></td>
-    </tr>
-    <tr>
-      <th>Title:</th>
-      <td><?php echo $event['title'] ?></td>
-    </tr>
-    <tr>
-      <th>Description:</th>
-      <td><?php echo $event->getRaw('description') ?></td>
-    </tr>
-    <tr>
-      <th>Custom location:</th>
-      <td><?php echo $event['customLocation'] ?></td>
-    </tr>
-    <tr>
-      <th>Linkout:</th>
-      <td><?php echo $event['linkout'] ?></td>
-    </tr>
-    <tr>
-      <th>Start date:</th>
-      <td><?php echo $event['startDate'] ?></td>
-    </tr>
-    <tr>
-      <th>Start time:</th>
-      <td><?php echo $event['startTime'] ?></td>
-    </tr>
-    <tr>
-      <th>End date:</th>
-      <td><?php echo $event['endDate'] ?></td>
-    </tr>
-    <tr>
-      <th>End time:</th>
-      <td><?php echo $event['endTime'] ?></td>
-    </tr>
-    <tr>
-      <th>Access level:</th>
-      <td><?php echo $event['accessLevel'] ?></td>
-    </tr>
-    <tr>
-      <th>Is accepted:</th>
-      <td><?php echo $event['is_accepted'] ?></td>
-    </tr>
-    <tr>
-      <th>Is public:</th>
-      <td><?php echo $event['is_public'] ?></td>
-    </tr>
-    <tr>
-      <th>Recurring location:</th>
-      <!--<td><?php // if ($event['recurringLocation'] !== False) echo $event['recurringLocation']['name'] ?></td>-->
-      <td><?php echo $event['recurringLocation']['name'] ?></td>
-    </tr>
-    <tr>
-      <th>Category:</th>
-      <td><?php echo $event['category']['name'] ?></td>
-    </tr>
-    <tr>
-      <th>Arranger:</th>
-      <td><?php echo $event['arranger']['name'] ?></td>
-    </tr>
-    <tr>
-      <th>Created at:</th>
-      <td><?php echo $event['created_at'] ?></td>
-    </tr>
-    <tr>
-      <th>Updated at:</th>
-      <td><?php echo $event['updated_at'] ?></td>
-    </tr>
-  </tbody>
-</table>
+<?php 
+use_helper('Date');
+?>
 
-<hr />
-<a href="<?php echo url_for('event/index') ?>">List</a>
+<div id="eventData">
+  <p>
+    <b>Where?</b> 
+    <?php 
+      if (!$event['location_id']) {
+        echo $event['customLocation']; 
+       } else {
+        echo link_to($event['recurringLocation']['name'], '/location/show/id/'. $event['location_id']);
+      } 
+     ?>
+  </p>
+  <p>
+    <b>When?</b> 
+    <?php 
+    if ($event['startDate'] == $event['endDate']):
+    ?>
+    <?php echo format_date($event['startDate']) ?> from <? echo $event['startTime'] ?> to <?php echo $event['endTime'] ?>
+    <?php else: ?>
+    from <?php echo format_date($event['startDate']) . ' ' . $event['startTime'] ?> to <?php echo format_date($event['endDate']) . ' ' . $event['endTime'] ?>
+    <?php endif ?>
+  </p>
+  <p>
+    <b>Who?</b> <?php echo link_to($event['arranger']['name'], '/arranger/show/id/' . $event['arranger_id']) ?>
+  </p>
+  <p>
+    <b>What?</b> <?php echo link_to($event['category']['name'], '/category/show/id/' . $event['category_id'])?>
+  </p>
+  <p>
+    <small>Created at <?php echo format_datetime($event['created_at']) ?>. Updated at <?php echo format_datetime($event['updated_at']) ?>.</small>
+  </p>
+</div>
+
+<div id="eventContent">
+  <h2><?php echo $event['title'] ?></h2>
+
+ <?echo $event->getRaw('description'); ?>
+
+  <?php if (!empty($event['linkout'])): ?>
+  <p>Read more <a href="<?php echo $events['linkout'] ?>">here</a></p>
+  <?php endif ?>
+
+</div>

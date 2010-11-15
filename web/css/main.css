@@ -374,3 +374,19 @@ em
 {
   display: inline;
 }
+
+#eventData {
+ background-color: #FFFFFF;
+ float: left;
+ width: 15em;
+ padding: 1em;
+}
+
+#eventContent {
+ background-color: #FFFFFF;
+ float: left;
+ margin-left: 1em;
+ padding: 1em;
+ width: 45em;
+}
+
