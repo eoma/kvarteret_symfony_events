@@ -6,6 +6,18 @@ homepage:
   url:   /
   param: { module: event, action: index }
 
+api_upcomingEvents:
+  url: /api/:sf_format/upcomingEvents/*
+  param: { module: api , action: upcomingEvents }
+  requirements:
+    sf_format: (?:json|xml)
+
+api_filteredEvents:
+  url: /api/:sf_format/filteredEvents/*
+  param: { module: api, action: filteredEvents }
+  requirements:
+    sf_format: (?:json|xml)
+
 api:
   url: /api/:sf_format/:action/:subaction/*
   param: { module: api }
