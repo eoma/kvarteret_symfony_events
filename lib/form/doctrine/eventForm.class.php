@@ -33,6 +33,12 @@ class eventForm extends BaseeventForm
     $this->setDefault('endDate', date('Y-m-d'));
     $this->setDefault('endTime', '21:00');
 
+    // Add a date validator, require that end date and time is at least 
+    // bigger than start date and time
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorCallback(array('callback' => array($this, 'checkStartAndEndDateTime')))
+    );
+
     $this->setWidget('location_id', new sfWidgetFormDoctrineChoiceNestedSet(array(
       'model'     => 'location',
       'add_empty' => true,
@@ -42,5 +48,27 @@ class eventForm extends BaseeventForm
     $editor = $this->widgetSchema['description']->getEditor();
     $editor->config['toolbar'] = array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote', '-', 'Image', 'Link', 'Unlink'));
     $editor->config['entities'] = false;
+  }
+
+  public function checkStartAndEndDateTime($validator, $values) {
+    $startDate = $values['startDate'];
+    $startTime = $values['startTime'];
+    $endDate = $values['endDate'];
+    $endTime = $values['endTime'];
+
+    $startTimestamp = strptime($startDate . ' ' . $startTime, '%Y-%m-%d %H:%M');
+    $endTimestamp = strptime($endDate . ' ' . $endTime, '%Y-%m-%d %H:%M');
+
+    if ($endTimestamp < $startTimestamp) {
+      $errorMsg = "End date and time must be later than start date and time";
+
+      $error = new sfValidatorError($validator, $errorMsg);
+      throw new sfValidatorErrorSchema($validator, array(
+        'endDate' => $error,
+	'endTime' => $error,
+      ));
+    }
+
+    return $values;
   }
 }
