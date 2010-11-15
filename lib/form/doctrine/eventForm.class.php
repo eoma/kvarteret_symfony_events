@@ -17,8 +17,21 @@ class eventForm extends BaseeventForm
       $this['created_at'], $this['updated_at']
     );
 
+    $years = range(date('Y'), date('Y') + 3);
+    $this->widgetSchema['startDate'] = new sfWidgetFormDate(array(
+      'format' => '%year%-%month%-%day%',
+      'years' => array_combine($years, $years),
+    ));
+
+    $this->widgetSchema['endDate'] = new sfWidgetFormDate(array(
+      'format' => '%year%-%month%-%day%',
+      'years' => array_combine($years, $years),
+    ));
+
     $this->setDefault('startDate', date('Y-m-d'));
+    $this->setDefault('startTime', '19:00');
     $this->setDefault('endDate', date('Y-m-d'));
+    $this->setDefault('endTime', '21:00');
 
     $this->setWidget('location_id', new sfWidgetFormDoctrineChoiceNestedSet(array(
       'model'     => 'location',
