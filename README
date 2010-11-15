@@ -40,10 +40,14 @@ To fix permissions run:
 If you make changes to schema.yml (the database model) please run
 > php symfony doctrine:build --all-classes
 
+Setup script ends here
+
 If you want to reload/reset the database, then run
 > php symfony doctrine:build --sql --db --and-load
 
 If you want to reload every database aspect (model, forms, fixtures, etc...)
 > php symfony doctrine:build --all --and-load
 
+Default administrator user is admin with password changeme, do immediately change this.
 
+Other users included are locationOwner and arranger, both with password changeme.
