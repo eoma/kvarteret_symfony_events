@@ -44,10 +44,28 @@ class eventForm extends BaseeventForm
       'add_empty' => true,
     )));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorCallback(array('callback' => array($this, 'checkIfLocationIsSet')))
+    );
+
     $this->widgetSchema['description'] = new sfWidgetFormCKEditor();
     $editor = $this->widgetSchema['description']->getEditor();
     $editor->config['toolbar'] = array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote', '-', 'Image', 'Link', 'Unlink'));
     $editor->config['entities'] = false;
+  }
+
+  public function checkIfLocationIsSet ($validator, $values) {
+    if (empty($values['customLocation']) && (empty($values['location_id']) || ($values['location_id'] == 0))) {
+      $errorMsg = "You must specify either a custom location or a recurring location";
+
+      $error = new sfValidatorError($validator, $errorMsg);
+      throw new sfValidatorErrorSchema($validator, array(
+        'customLocation' => $error,
+	'location_id' => $error,
+      ));
+    }
+
+    return $values;
   }
 
   public function checkStartAndEndDateTime($validator, $values) {
