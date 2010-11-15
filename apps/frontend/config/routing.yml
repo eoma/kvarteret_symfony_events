@@ -7,7 +7,7 @@ homepage:
   param: { module: event, action: index }
 
 api:
-  url: /api/:sf_format/:action/*
+  url: /api/:sf_format/:action/:subaction/*
   param: { module: api }
   requirements:
     sf_format: (?:json|xml)
