@@ -28,9 +28,10 @@ class eventForm extends BaseeventForm
       'years' => array_combine($years, $years),
     ));
 
-    $this->setDefault('startDate', date('Y-m-d'));
+    // Set default start and end date to the next day
+    $this->setDefault('startDate', date('Y-m-d', time() + 86400));
     $this->setDefault('startTime', '19:00');
-    $this->setDefault('endDate', date('Y-m-d'));
+    $this->setDefault('endDate', date('Y-m-d', time() + 86400));
     $this->setDefault('endTime', '21:00');
 
     // Add a date validator, require that end date and time is at least 
@@ -74,8 +75,8 @@ class eventForm extends BaseeventForm
     $endDate = $values['endDate'];
     $endTime = $values['endTime'];
 
-    $startTimestamp = strptime($startDate . ' ' . $startTime, '%Y-%m-%d %H:%M');
-    $endTimestamp = strptime($endDate . ' ' . $endTime, '%Y-%m-%d %H:%M');
+    $startTimestamp = strtotime($startDate . ' ' . $startTime);
+    $endTimestamp = strtotime($endDate . ' ' . $endTime);
 
     if ($endTimestamp < $startTimestamp) {
       $errorMsg = "End date and time must be later than start date and time";
