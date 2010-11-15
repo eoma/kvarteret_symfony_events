@@ -78,6 +78,16 @@ class eventForm extends BaseeventForm
     $startTimestamp = strtotime($startDate . ' ' . $startTime);
     $endTimestamp = strtotime($endDate . ' ' . $endTime);
 
+    if ($startTimestamp < time()) {
+      $errorMsg = "You can't set start date and time to the past";
+
+      $error = new sfValidatorError($validator, $errorMsg);
+      throw new sfValidatorErrorSchema($validator, array(
+        'startDate' => $error,
+	'startTime' => $error,
+      ));
+    }
+
     if ($endTimestamp < $startTimestamp) {
       $errorMsg = "End date and time must be later than start date and time";
 
