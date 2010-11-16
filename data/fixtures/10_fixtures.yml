@@ -1,9 +1,10 @@
 event:
   testEvent:
     title: A little test event far in the future
-    startDate: "2015-04-15"
+    leadParagraph: As the title says
+    startDate: "2012-04-15"
     startTime: "14:00:00"
-    endDate: "2015-04-15"
+    endDate: "2012-04-15"
     endTime: "15:00:00"
     recurringLocation: Teglverket
     arranger: RF
@@ -12,9 +13,10 @@ event:
     is_public: true
   testEvent2: 
     title: Another testevent with custom location
-    startDate: "2016-05-10"
+    leadParagraph: Custom location must be manually typed in
+    startDate: "2012-05-10"
     startTime: "14:00:00"
-    endDate: "2016-05-10"
+    endDate: "2012-05-10"
     endTime: "15:00:00"
     customLocation: Some remote area
     arranger: ASF
@@ -24,9 +26,10 @@ event:
   testEvent3:
     title: Debate in the future
     description: A little description
-    startDate: "2014-05-17"
+    leadParagraph: <p>A little lead paragraph</p><p>Another "lead" paragraph</p>
+    startDate: "2012-05-17"
     startTime: "14:00:00"
-    endDate: "2014-05-17"
+    endDate: "2012-05-17"
     endTime: "15:00:00"
     recurringLocation: Tivoli
     arranger: RF
