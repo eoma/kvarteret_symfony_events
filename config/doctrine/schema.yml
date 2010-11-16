@@ -156,7 +156,6 @@ event: # This table will hold all events.
     title: { type: string(255), notnull: true }
     leadParagraph: string(800)
     description: string
-    customLocation: {type: string(255), notnull: false}
     linkout: {type: string(255), notnull: false}
     startDate: date
     startTime: time
@@ -166,6 +165,7 @@ event: # This table will hold all events.
     # If an event has been accepted by a user in locationUser, if the location_id is connected to a user
     is_accepted: {type: boolean, default: true}
     is_public: {type: boolean, default: false}
+    customLocation: {type: string(255), notnull: false}
     location_id: integer # This will be used for locations that recur, instead of manually typing locations.
     category_id: {type: integer, notnull: true}
     arranger_id: {type: integer, notnull: true}
