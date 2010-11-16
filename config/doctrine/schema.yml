@@ -153,7 +153,8 @@ event: # This table will hold all events.
 #      type: integer
 #      notnull: false
 #      default: null
-    title: string(255)
+    title: { type: string(255), notnull: true }
+    leadParagraph: string(800)
     description: string
     customLocation: {type: string(255), notnull: false}
     linkout: {type: string(255), notnull: false}
