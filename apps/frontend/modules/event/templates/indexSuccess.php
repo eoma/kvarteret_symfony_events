@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Title</th>
-      <th>Description</th>
+      <th>Lead paragraph</th>
       <th>Location</th>
       <th>Linkout</th>
       <th>Start</th>
@@ -17,7 +17,7 @@
     <?php foreach ($events as $event): ?>
     <tr>
       <td><a href="<?php echo url_for('event/show?id='.$event['id']) ?>"><?php echo $event['title'] ?></a></td>
-      <td><?php echo $event['description'] ?></td>
+      <td><?php echo $event['leadParagraph'] ?></td>
       <td><?php 
                 if ( ! $event['location_id'] ) 
                   echo $event['customLocation'];
