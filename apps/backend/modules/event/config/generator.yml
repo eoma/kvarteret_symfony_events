@@ -15,10 +15,11 @@ generator:
       actions: ~
       fields:
         is_public: { label: Public?, help: Whether the event is public to the world }
+        leadParagraph: { label: Lead paragraph, help: A short description of the event, maximum 800 signs, including html elements }
       list:
         title: Eventlist
         sort: [startDate, desc]
-        display: [=title, location, startDate, startTime, endDate, endTime]
+        display: [=title, location, arranger, startDate, startTime, endDate, endTime]
       filter:  ~
       form:    ~
       edit:
