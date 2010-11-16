@@ -31,13 +31,13 @@ class event extends Baseevent
    * We'll only allow certain tags, and certain attributes on tags
    */
   public function setDescription ($value) {
-    $purifier = new HTMLPurifier();
+    $purifier = new myHTMLPurifier();
 
     // purifier configuration:
     // documentation: http://stackoverflow.com/questions/1320524/how-to-allow-certain-html-tags-in-a-form-field-in-symfony-1-2/1321794#1321794
-    $purifier_config = HTMLPurifier_Config::createDefault();
+    $purifier_config = $purifier->createConfig();
 
-    $purifier_config->set('HTML.DefinitionID', 'User Content Filter');
+    $purifier_config->set('HTML.DefinitionID', 'eventDescription');
     $purifier_config->set('HTML.DefinitionRev', 1);
 
     // clean empty tags
@@ -51,18 +51,9 @@ class event extends Baseevent
     // these are allowed html attributes, coool!
     $purifier_config->set('HTML.AllowedAttributes', 'a.href,a.title,span.style,span.class,span.id,p.style,img.src,img.style,img.alt,img.title,img.width,img.height');
 
-    $purifier_config->set('HTML.Doctype', 'XHTML 1.0 Transitional');
-
-    // cache dir, just for symfony of course, you can change to another path
-    $purifier_config->set('Cache.SerializerPath', sfConfig::get('sf_cache_dir'));
-
-    $purifier_config->set('HTML.TidyLevel', 'heavy');
-
     // now clean your data
     $clean_html = $purifier->purify($value, $purifier_config);
 
     $this->_set('description', $clean_html);
-
   }
-
 }
