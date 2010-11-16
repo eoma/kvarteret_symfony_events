@@ -17,7 +17,7 @@
     <?php foreach ($events as $event): ?>
     <tr>
       <td><a href="<?php echo url_for('event/show?id='.$event['id']) ?>"><?php echo $event['title'] ?></a></td>
-      <td><?php echo $event['leadParagraph'] ?></td>
+      <td><?php echo $event->getRaw('leadParagraph') ?></td>
       <td><?php 
                 if ( ! $event['location_id'] ) 
                   echo $event['customLocation'];
