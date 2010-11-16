@@ -56,4 +56,31 @@ class event extends Baseevent
 
     $this->_set('description', $clean_html);
   }
+
+  public function setLeadParagraph ($value) {
+    $purifier = new myHTMLPurifier();
+
+    // purifier configuration:
+    // documentation: http://stackoverflow.com/questions/1320524/how-to-allow-certain-html-tags-in-a-form-field-in-symfony-1-2/1321794#1321794
+    $purifier_config = $purifier->createConfig();
+
+    $purifier_config->set('HTML.DefinitionID', 'eventLeadParagraph');
+    $purifier_config->set('HTML.DefinitionRev', 1);
+
+    // clean empty tags
+    $purifier_config->set('AutoFormat.RemoveEmpty', true);
+    $purifier_config->set('AutoFormat.RemoveEmpty.RemoveNbsp', true);
+    //$purifier_config->set('AutoFormat.RemoveEmpty.RemoveNbsp.Exceptions', array());
+
+    // these are allowed html tags, means white list
+    $purifier_config->set('HTML.AllowedElements', 'p');
+
+    // these are allowed html attributes, coool!
+    //$purifier_config->set('HTML.AllowedAttributes', '');
+
+    // now clean your data
+    $clean_html = $purifier->purify($value, $purifier_config);
+
+    $this->_set('leadParagraph', $clean_html);
+  }
 }
