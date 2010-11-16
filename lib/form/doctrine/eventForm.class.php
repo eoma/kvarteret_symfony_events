@@ -49,6 +49,9 @@ class eventForm extends BaseeventForm
       new sfValidatorCallback(array('callback' => array($this, 'checkIfLocationIsSet')))
     );
 
+    $this->widgetSchema['title']->setAttribute('size', 64);
+    $this->widgetSchema['title']->setAttribute('maxlength', 255);
+
     $this->widgetSchema['description'] = new sfWidgetFormCKEditor();
     $editor = $this->widgetSchema['description']->getEditor();
     $editor->config['toolbar'] = array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote', '-', 'Image', 'Link', 'Unlink'));
