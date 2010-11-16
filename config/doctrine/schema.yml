@@ -161,7 +161,7 @@ event: # This table will hold all events.
     startTime: time
     endDate: date
     endTime: time
-    accessLevel: string(255)
+#    accessLevel: string(255)
     # If an event has been accepted by a user in locationUser, if the location_id is connected to a user
     is_accepted: {type: boolean, default: true}
     is_public: {type: boolean, default: false}
