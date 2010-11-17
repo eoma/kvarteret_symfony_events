@@ -205,7 +205,7 @@ class apiActions extends sfActions
       ->leftJoin('e.recurringLocation l')
       ->leftJoin('e.arranger a')
       ->leftJoin('e.category c')
-      ->where('e.startDate >= ? OR e.endDate >= ?', date('Y-m-d'), date('Y-m-d'))
+      ->where('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
       ->limit($limit)
       ->offset($offset)
       ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
