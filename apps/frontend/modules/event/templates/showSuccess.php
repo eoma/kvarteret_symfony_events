@@ -37,6 +37,7 @@ use_helper('Date');
 <div id="eventContent">
   <h2><?php echo $event['title'] ?></h2>
 
+ <?echo $event->getRaw('leadParagraph'); ?>
  <?echo $event->getRaw('description'); ?>
 
   <?php if (!empty($event['linkout'])): ?>
