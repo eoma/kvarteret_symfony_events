@@ -14,7 +14,7 @@ class eventForm extends BaseeventForm
   {
 
     unset(
-      $this['created_at'], $this['updated_at']
+      $this['created_at'], $this['updated_at'], $this['user_id']
     );
 
     $years = range(date('Y'), date('Y') + 3);
@@ -61,6 +61,18 @@ class eventForm extends BaseeventForm
     $editor = $this->widgetSchema['description']->getEditor();
     $editor->config['toolbar'] = array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote', '-', 'Image', 'Link', 'Unlink'));
     $editor->config['entities'] = false;
+  }
+  
+  public function doUpdateObject ( $values ) {
+	  if ($this->isNew()) {
+		  if (!($this->getOption('currentUser')) instanceof sfGuardSecurityUser) {
+			  throw new InvalidArgumentException("You must pass a user object as an option to this form!");
+		  }
+		  
+		  $this->getObject()->setUserId($this->getOption('currentUser')->getGuardUser()->getId());
+		  
+		  return parent::doUpdateObject( $values );
+	  }
   }
 
   public function checkIfLocationIsSet ($validator, $values) {

@@ -13,4 +13,13 @@ require_once dirname(__FILE__).'/../lib/eventGeneratorHelper.class.php';
  */
 class eventActions extends autoEventActions
 {
+  public function executeCreate(sfWebRequest $request)
+  {
+	$this->form = $this->configuration->getForm(null, array('currentUser' => $this->getUser()));
+    $this->event = $this->form->getObject();
+    
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('new');
+  }
 }
