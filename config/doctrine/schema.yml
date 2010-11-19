@@ -49,6 +49,10 @@ locationUser:
   relations:
     user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locations}
     location: {local: location_id, foreign: id, foreignAlias: users}
+  indexes:
+    user_location:
+      fields: [user_id, location_id]
+      type: unique
 
 arranger:
   actAs: [Timestampable]
@@ -69,6 +73,10 @@ arrangerUser:
   relations:
     user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: arrangers}
     arranger: {local: arranger_id, foreign: id, foreignAlias: users}
+  indexes:
+    user_arranger:
+      fields: [user_id, arranger_id]
+      type: unique
 
 loginLog:
   options:
