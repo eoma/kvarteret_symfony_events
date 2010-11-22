@@ -19,7 +19,7 @@ generator:
       list:
         title: Eventlist
         sort: [startDate, desc]
-        display: [=title, location, arranger, startDate, startTime, endDate, endTime]
+        display: [=title, location, arranger, user, startDate, startTime, endDate, endTime]
       filter:  ~
       form:    ~
       edit:
