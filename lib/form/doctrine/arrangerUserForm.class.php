@@ -12,5 +12,17 @@ class arrangerUserForm extends BasearrangerUserForm
 {
   public function configure()
   {
+
+    if ( $this->getOption( 'hideArranger', false ) ) {
+      // Unsetting the arranger_id. Remember to set correct value in doBind() of the "parent" form
+      // using this form
+      unset($this->widgetSchema['arranger_id']);
+    }
+
+    if ( ! $this->isNew() )
+    {
+      $this->widgetSchema['delete'] = new sfWidgetFormInputCheckbox();
+      $this->validatorSchema['delete'] = new sfValidatorPass();
+    }
   }
 }
