@@ -44,11 +44,11 @@ locationAccessory: # This table can be used to list what accomodations/items a l
 
 locationUser:
   columns:
-    user_id: integer
-    location_id: integer
+    user_id: {type: integer, notnull: true}
+    location_id: {type: integer, notnull: true}
   relations:
-    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locations}
-    location: {local: location_id, foreign: id, foreignAlias: users}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locations, onDelete: CASCADE}
+    location: {local: location_id, foreign: id, foreignAlias: users, onDelete: CASCADE}
   indexes:
     user_location:
       fields: [user_id, location_id]
@@ -68,11 +68,11 @@ arranger:
 
 arrangerUser:
   columns:
-    user_id: integer
-    arranger_id: integer
+    user_id: {type: integer, notnull: true}
+    arranger_id: {type: integer, notnull: true}
   relations:
-    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: arrangers}
-    arranger: {local: arranger_id, foreign: id, foreignAlias: users}
+    user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: arrangers, onDelete: CASCADE}
+    arranger: {local: arranger_id, foreign: id, foreignAlias: users, onDelete: CASCADE}
   indexes:
     user_arranger:
       fields: [user_id, arranger_id]
