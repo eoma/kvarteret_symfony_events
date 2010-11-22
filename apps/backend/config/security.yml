@@ -3,4 +3,3 @@
 
 default:
   is_secure: true
-  credentials: admin
