@@ -13,6 +13,10 @@ class eventForm extends BaseeventForm
   public function configure()
   {
 
+    if (!($this->getOption('currentUser')) instanceof sfGuardSecurityUser) {
+      throw new InvalidArgumentException("You must pass a user object as an option to this form!");
+    }
+
     unset(
       $this['created_at'], $this['updated_at'], $this['user_id']
     );
@@ -64,15 +68,11 @@ class eventForm extends BaseeventForm
   }
   
   public function doUpdateObject ( $values ) {
-	  if ($this->isNew()) {
-		  if (!($this->getOption('currentUser')) instanceof sfGuardSecurityUser) {
-			  throw new InvalidArgumentException("You must pass a user object as an option to this form!");
-		  }
-		  
-		  $this->getObject()->setUserId($this->getOption('currentUser')->getGuardUser()->getId());
-		  
-		  return parent::doUpdateObject( $values );
-	  }
+    if ($this->isNew()) {		  
+      $this->getObject()->setUserId($this->getOption('currentUser')->getGuardUser()->getId());
+
+      return parent::doUpdateObject( $values );
+    }
   }
 
   public function checkIfLocationIsSet ($validator, $values) {
