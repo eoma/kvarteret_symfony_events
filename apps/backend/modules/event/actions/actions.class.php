@@ -52,4 +52,27 @@ class eventActions extends autoEventActions
     $this->setTemplate('edit');
   }
 
+  protected function buildQuery()
+  {
+    $query = parent::buildQuery();
+    // do what ever you like with the query like
+
+    if ( ! $this->getUser()->hasGroup('admin') ) {
+      $arrangerUsersRowBased = Doctrine_Core::getTable('arrangerUser')
+                             ->createQuery('au')
+                             ->select('au.arranger_id')
+                             ->where('au.user_id = ?', $this->getUser()->getGuardUser()->getId())
+                              ->fetchArray();
+
+      $arrangerUsersColumnbased = array();
+      foreach ($arrangerUsersRowBased as $v) {
+        $arrangerUsersColumnBased[] = $v['arranger_id'];
+      }
+
+      $query->andWhereIn('arranger_id', $arrangerUsersColumnBased);
+    }
+    return $query;
+  }
+
+
 }
