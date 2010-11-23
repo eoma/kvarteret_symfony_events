@@ -64,6 +64,7 @@ sfGuardUser:
     username:       locationOwner
     password:       changeme
     is_super_admin: false
+    Groups:         [Group_user]
   arranger:
     first_name:     Arranger
     last_name:      of Culture
@@ -71,17 +72,25 @@ sfGuardUser:
     username:       arranger
     password:       changeme
     is_super_admin: false
+    Groups:         [Group_user]
 
 sfGuardGroup:
   Group_admin:
     name:           admin
     description:    Administrator group
-    Permissions:    [Permission_admin]
+    Permissions:    [Permission_admin, Permission_user]
+  Group_user:
+    name:           user
+    description:    User group
+    Permissions:    [Permission_user]
 
 sfGuardPermission:
   Permission_admin:
     name:           admin
     description:    Administrator permission
+  Permission_user:
+    name:           user
+    description:    User permission
 
 discussionCategory:
   general:
