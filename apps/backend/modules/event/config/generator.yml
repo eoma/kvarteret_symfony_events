@@ -15,7 +15,10 @@ generator:
       actions: ~
       fields:
         is_public: { label: Public?, help: Whether the event is public to the world }
-        leadParagraph: { label: Lead paragraph, help: A short description of the event, maximum 800 signs, including html elements }
+        is_accepted: { label: Accepted?, help: Whether the event has been accepted by location owner }
+        leadParagraph: { label: Lead paragraph, help: "A short description of the event, maximum 800 signs, including html elements" }
+        customLocation: { label: Custom location }
+        location_id: { label: Recurring location, help: "Specify recurring location, takes preferance over custom location" }
       list:
         title: Eventlist
         sort: [startDate, desc]
