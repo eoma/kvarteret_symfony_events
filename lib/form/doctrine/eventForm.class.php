@@ -86,9 +86,8 @@ class eventForm extends BaseeventForm
   public function doUpdateObject ( $values ) {
     if ($this->isNew()) {		  
       $this->getObject()->setUserId($this->getOption('currentUser')->getGuardUser()->getId());
-
-      return parent::doUpdateObject( $values );
     }
+    return parent::doUpdateObject( $values );
   }
 
   public function checkIfLocationIsSet ($validator, $values) {
