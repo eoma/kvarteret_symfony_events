@@ -76,9 +76,13 @@ class eventForm extends BaseeventForm
       $this->widgetSchema['arranger_id']->setOption('query', 
         Doctrine_Core::getTable('arranger')->createQuery('a')->select('a.*')->leftJoin('a.users u')->where('u.user_id = ?', $user->getId())
       );
+
+      // Mere arrangers won't be able to accept event at a location if
+      // the location demands accept from location owner (if it's defined as so).
+      unset($this['is_accepted']);
     }
   }
-  
+
   public function doUpdateObject ( $values ) {
     if ($this->isNew()) {		  
       $this->getObject()->setUserId($this->getOption('currentUser')->getGuardUser()->getId());
