@@ -44,6 +44,8 @@ class eventForm extends BaseeventForm
       new sfValidatorCallback(array('callback' => array($this, 'checkStartAndEndDateTime')))
     );
 
+    $this->setValidator('linkout', new sfValidatorUrl(array('required' => false)));
+
     $this->setWidget('location_id', new sfWidgetFormDoctrineChoiceNestedSet(array(
       'model'     => 'location',
       'add_empty' => true,
