@@ -10,4 +10,16 @@
  */
 class eventGeneratorConfiguration extends BaseEventGeneratorConfiguration
 {
+
+  protected $user;
+
+  public function setUser(sfGuardSecurityUser $user) {
+    //echo "executed!";
+    $this->user = $user;
+  }
+
+  public function getFilterFormOptions () {
+    return array('currentUser' => $this->user);
+  }
+
 }
