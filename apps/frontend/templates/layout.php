@@ -9,10 +9,12 @@
   </head>
   <body>
     <div id="menu">
-      <a href="<?php echo url_for('homepage') ?>">Main</a>
-      <a href="<?php echo url_for('location/index') ?>">Locations</a>
-      <a href="<?php echo url_for('arranger/index') ?>">Arranger</a>
-      <a href="<?php echo url_for('category/index') ?>">Categories</a>
+      <ul>
+        <li><?php echo link_to('Main', '@homepage') ?></li>
+        <li><?php echo link_to('Locations', 'location/index') ?></li>
+        <li><?php echo link_to('Arrangers', 'arranger/index') ?></li>
+        <li><?php echo link_to('Categories', 'category/index') ?></li>
+      </ul>
     </div>
     <div id="content">
       <?php echo $sf_content ?>
