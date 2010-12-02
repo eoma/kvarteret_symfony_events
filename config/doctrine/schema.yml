@@ -27,6 +27,9 @@ location:
       autoincrement: true
     name: string(255)
     description: string
+    is_requiringReservation: { type: boolean, notnull: true, default: false }
+    is_visible: { type: boolean, notnull: true, default: true } # If the location is visible for every
+                                                                # visitor not logged in.
 
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
