@@ -390,3 +390,7 @@ em
  width: 45em;
 }
 
+#menu li {
+  margin-right: 15px;
+  display: inline;
+}
