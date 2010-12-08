@@ -62,6 +62,24 @@ locationReservationRequirementBase: # Base table for all location reservation re
     locationReservation_id: { type: integer, notnull: true }
     other: string
 
+requirementLightSound:
+  inheritance:
+    extends: locationReservationRequirementBase
+    type: concrete
+  columns:
+    externalSoundTech: boolean
+    externalLightTech: boolean
+    externalBackline: boolean
+    is_requiringSmoke: boolean
+    numberOfCrewMembers: integer
+    numberOfBandMembers: integer
+    soundCheckDate: { type: date, notnull: true }
+    soundCheckTime: { type: time, notnull: true }
+    getInDate: { type: date, notnull: true }
+    getInTime: { type: time, notnull: true }
+  relations:
+    locationReservation: { local: locationReservation_id, foreign: id, foreignType: one, onDelete: CASCADE }
+
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
   options:
