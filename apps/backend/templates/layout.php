@@ -33,6 +33,9 @@
           <li>
             <?php echo link_to('Locations', 'location') ?>
           </li>
+          <li>
+            <?php echo link_to('Location reservations', 'location_reservation') ?>
+          </li>
           <?php if ($sf_user->isSuperAdmin()): ?>
           <!-- If the user is a super admin we show the group and permission pages -->
           <li>
