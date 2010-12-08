@@ -5,7 +5,6 @@
     <title>Event Admin Interface</title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_stylesheet('admin.css') ?>
-    <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
   </head>
   <body>
@@ -65,5 +64,6 @@
         <img src="/images/symfony.gif" alt="symfony framework" /></a>
       </div>
     </div>
+    <?php include_javascripts() ?>
   </body>
 </html>
