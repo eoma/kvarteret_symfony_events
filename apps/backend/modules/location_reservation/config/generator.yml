@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display: [=title, status, arranger, location, updated_at]
+        display: [=title, status, arranger, location, activatedRequirements, updated_at]
       filter:  ~
       form:    ~
       edit:    ~
