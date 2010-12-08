@@ -31,6 +31,30 @@ location:
     is_visible: { type: boolean, notnull: true, default: true } # If the location is visible for every
                                                                 # visitor not logged in.
 
+locationReservation: # This table contains reservations of locations
+  actAs: [Timestampable]
+  columns:
+    id: { type: integer, primary: true, autoincrement: true }
+    title: string(255)
+    description: string
+    location_id: { type: integer, notnull: true }
+    accessDate: date # By default it will be set to startDate
+    accessTime: time # By default it will be set to startTime
+    startDate: { type: date, notnull: true }
+    startTime: { type: time, notnull: true }
+    endDate: { type: date, notnull: true }
+    endTime: { type: time, notnull: true }
+    arranger_id: integer
+    user_id: integer
+    parentLocationReservation_id: { type: integer, default: null }
+    status: { type: integer, default: 3 } # Status codes: 3 -> unread, 2 -> pending, 1 -> accepted, 0 -> not accepted
+    usageType_id: integer
+  relations:
+    parentLocationReservation: { class: locationReservation, local: parentLocationReservation_id, foreign: id, onDelete: CASCADE, foreignAlias: childLocationReservations, owningSide: true }
+    location: { local: location_id, foreign: id, onDelete: CASCADE, foreignAlias: reservations }
+    arranger: { local: arranger_id, foreign: id, onDelete: CASCADE, foreignAlias: locationReservations }
+    user: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locationReservations, onDelete: CASCADE }
+
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
   options:
