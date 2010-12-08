@@ -10,6 +10,18 @@
  */
 abstract class BaseFormDoctrine extends sfFormDoctrine
 {
+
+  /**
+   * Removes the timestamp fields in the form
+   */
+  protected function removeTimestamps () 
+  {
+    unset(
+      $this['created_at'],
+      $this['updated_at']
+    );
+  }
+
   public function setup()
   {
   }
