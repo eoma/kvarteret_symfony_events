@@ -1,3 +1,12 @@
+location_reservation:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                locationReservation
+    module:               location_reservation
+    prefix_path:          /location_reservation
+    column:               id
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
