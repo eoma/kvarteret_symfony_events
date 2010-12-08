@@ -80,6 +80,19 @@ requirementLightSound:
   relations:
     locationReservation: { local: locationReservation_id, foreign: id, foreignType: one, onDelete: CASCADE }
 
+requirementPhotography:
+  inheritance:
+    extends: locationReservationRequirementBase
+    type: concrete
+  columns:
+    print: integer # 0 -> no print, 1 -> less than or equal to A3, 2 -> more than A3
+    web: integer # 0 -> no web, 1 -> 800x600, 2 -> original
+    analogue: integer # 0 -> no analogue, 1 -> color, 2 -> black/white
+    meetAtDate: { type: date, notnull: true }
+    meetAtTime: { type: time, notnull: true }
+  relations:
+    locationReservation: { local: locationReservation_id, foreign: id, foreignType: one, onDelete: CASCADE }
+
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
   options:
