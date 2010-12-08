@@ -55,6 +55,13 @@ locationReservation: # This table contains reservations of locations
     arranger: { local: arranger_id, foreign: id, onDelete: CASCADE, foreignAlias: locationReservations }
     user: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locationReservations, onDelete: CASCADE }
 
+locationReservationRequirementBase: # Base table for all location reservation requirements, will not be created or used directly.
+                                    # Sadly, child tables don't inherit relations
+  actAs: [Timestampable]
+  columns:
+    locationReservation_id: { type: integer, notnull: true }
+    other: string
+
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
   options:
