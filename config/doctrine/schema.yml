@@ -93,6 +93,18 @@ requirementPhotography:
   relations:
     locationReservation: { local: locationReservation_id, foreign: id, foreignType: one, onDelete: CASCADE }
 
+requirementCatering:
+  inheritance:
+    extends: locationReservationRequirementBase
+    type: concrete
+  columns:
+    allergy: string
+    numberOfEaters: { type: integer, notnull: true }
+    servedAtDate: { type: date, notnull: true }
+    servedAtTime: { type: time, notnull: true }
+  relations:
+    locationReservation: { local: locationReservation_id, foreign: id, foreignType: one, onDelete: CASCADE }
+
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
   options:
