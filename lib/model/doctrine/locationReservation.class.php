@@ -12,4 +12,19 @@
  */
 class locationReservation extends BaselocationReservation
 {
+
+  public function getActivatedRequirements ()
+  {
+    $string = '';
+    if ($this->relatedExists('requirementLightSound'))
+      $string .= 'light and sound, ';
+
+    if ($this->relatedExists('requirementPhotography'))
+      $string .= 'photography, ';
+    
+    if ($this->relatedExists('requirementCatering'))
+      $string .= 'catering, ';
+
+    return substr($string, 0, -2);
+  }
 }
