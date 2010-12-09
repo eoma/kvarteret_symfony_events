@@ -26,6 +26,9 @@ class locationReservationForm extends BaselocationReservationForm
     $this->setDefault('endDate', date('Y-m-d', time() + 86400));
     $this->setDefault('endTime', '21:00');
 
+    $this->widgetSchema['status'] = new sfWidgetFormSelect( array( 'choices' => locationReservation::getStatusChoices() ));
+    $this->validatorSchema['status'] = new sfValidatorChoice( array( 'choices' => array_keys(locationReservation::getStatusChoices()) ) );
+
     if ( ! $this->isNew() )
     {
       
