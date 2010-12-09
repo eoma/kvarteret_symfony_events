@@ -13,6 +13,23 @@
 class locationReservation extends BaselocationReservation
 {
 
+  // NEVER change the meaning of the strings the numbers points to.
+  protected static $choices = array(
+     0 => 'Not accepted',
+     1 => 'Accepted',
+     2 => 'Pending',
+     3 => 'Unread',
+  );
+
+  public static function getStatusChoices()
+  {
+    return self::$choices;
+  }
+
+  public function getStatusString() {
+    return self::$choices[ $this->getStatus() ];
+  }
+
   public function getActivatedRequirements ()
   {
     $string = '';
