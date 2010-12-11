@@ -147,7 +147,7 @@ arrangerUser:
   columns:
     user_id: {type: integer, notnull: true}
     arranger_id: {type: integer, notnull: true}
-    is_arrangerUserAdmin: {type: boolean, notnull: true} # If this flag is set, a user can add other users to this arranger
+    is_arrangerUserAdmin: {type: boolean, notnull: true, default: false} # If this flag is set, a user can add other users to this arranger
   relations:
     user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: arrangers, onDelete: CASCADE}
     arranger: {local: arranger_id, foreign: id, foreignAlias: users, onDelete: CASCADE}
