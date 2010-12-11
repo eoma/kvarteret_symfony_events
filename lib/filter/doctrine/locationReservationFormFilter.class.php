@@ -13,6 +13,10 @@ class locationReservationFormFilter extends BaselocationReservationFormFilter
   public function configure()
   {
 
+    $statusChoices = array('' => '') + locationReservation::getStatusChoices();
+    $this->widgetSchema['status'] = new sfWidgetFormChoice( array( 'choices' => $statusChoices ) );
+    $this->validatorSchema['status'] = new sfValidatorChoice( array( 'required' => false, 'choices' => array_keys($statusChoices)) );
+
     $yesOrNoChoices = array(
       '' => 'Yes or no',
       1 => 'Yes',
@@ -42,6 +46,7 @@ class locationReservationFormFilter extends BaselocationReservationFormFilter
     $fields['hasLightSound'] = 'hasLightSound';
     $fields['hasPhotography'] = 'hasPhotography';
     $fields['hasCatering'] = 'hasCatering';
+    $fields['status'] = 'ForeignKey'; // A small trick to make symfony filter values from choice list.
 
     return $fields;
   }
