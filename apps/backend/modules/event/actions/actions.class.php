@@ -64,12 +64,12 @@ class eventActions extends autoEventActions
                              ->where('au.user_id = ?', $this->getUser()->getGuardUser()->getId())
                               ->fetchArray();
 
-      $arrangerUsersColumnbased = array();
+      $arrangerUsersColumnBased = array();
       foreach ($arrangerUsersRowBased as $v) {
         $arrangerUsersColumnBased[] = $v['arranger_id'];
       }
 
-      if ( ! empty($arrangerUsersColumnsBased) ) {
+      if ( count($arrangerUsersColumnBased) > 0 ) {
         $query->andWhereIn('arranger_id', $arrangerUsersColumnBased);
       } else {
         // No events can be created with arranger_id set to null
