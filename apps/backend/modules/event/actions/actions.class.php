@@ -57,7 +57,7 @@ class eventActions extends autoEventActions
     $query = parent::buildQuery();
     // do what ever you like with the query like
 
-    if ( ! $this->getUser()->hasGroup('admin') ) {
+    if ( $this->getUser()->isAuthenticated() && ! $this->getUser()->hasGroup('admin') ) {
       $arrangerUsersRowBased = Doctrine_Core::getTable('arrangerUser')
                              ->createQuery('au')
                              ->select('au.arranger_id')
@@ -69,7 +69,12 @@ class eventActions extends autoEventActions
         $arrangerUsersColumnBased[] = $v['arranger_id'];
       }
 
-      $query->andWhereIn('arranger_id', $arrangerUsersColumnBased);
+      if ( ! empty($arrangerUsersColumnsBased) ) {
+        $query->andWhereIn('arranger_id', $arrangerUsersColumnBased);
+      } else {
+        // No events can be created with arranger_id set to null
+        $query->andWhere('arranger_id is null');
+      }
     }
     return $query;
   }
