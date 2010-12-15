@@ -22,4 +22,8 @@ class eventGeneratorConfiguration extends BaseEventGeneratorConfiguration
     return array('currentUser' => $this->user);
   }
 
+  public function getFormOptions () {
+    return array('currentUser' => $this->user);
+  }
+
 }

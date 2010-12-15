@@ -20,38 +20,6 @@ class eventActions extends autoEventActions
     $this->configuration->setUser($this->getUser());
   }
 
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->form = $this->configuration->getForm(null, array('currentUser' => $this->getUser()));
-    $this->event = $this->form->getObject();
-    
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-  }
-
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = $this->configuration->getForm(null, array('currentUser' => $this->getUser()));
-    $this->event = $this->form->getObject();
-  }
-
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->event = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->event, array('currentUser' => $this->getUser()));
-  }
-
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->event = $this->getRoute()->getObject();
-    $this->form = $this->configuration->getForm($this->event, array('currentUser' => $this->getUser()));
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
-  }
-
   protected function buildQuery()
   {
     $query = parent::buildQuery();
