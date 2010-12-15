@@ -13,4 +13,12 @@ require_once dirname(__FILE__).'/../lib/location_reservationGeneratorHelper.clas
  */
 class location_reservationActions extends autoLocation_reservationActions
 {
+
+  public function preExecute()
+  {
+    parent::preExecute();
+
+    $this->configuration->setUser($this->getUser());
+  }
+
 }
