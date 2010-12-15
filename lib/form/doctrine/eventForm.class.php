@@ -38,12 +38,6 @@ class eventForm extends BaseeventForm
     $this->setDefault('endDate', date('Y-m-d', time() + 86400));
     $this->setDefault('endTime', '21:00');
 
-    // Add a date validator, require that end date and time is at least 
-    // bigger than start date and time
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorCallback(array('callback' => array($this, 'checkStartAndEndDateTime')))
-    );
-
     $this->setValidator('linkout', new sfValidatorUrl(array('required' => false)));
 
     $this->setWidget('location_id', new sfWidgetFormDoctrineChoiceNestedSet(array(
@@ -52,7 +46,16 @@ class eventForm extends BaseeventForm
     )));
 
     $this->validatorSchema->setPostValidator(
-      new sfValidatorCallback(array('callback' => array($this, 'checkIfLocationIsSet')))
+      new sfValidatorAnd(
+        array(
+          // Add a date validator, require that end date and time is at least 
+          // bigger than start date and time
+          new sfValidatorCallback(array('callback' => array($this, 'checkStartAndEndDateTime'))),
+
+          // Add location validator, check if either location_id or customLocation is set
+          new sfValidatorCallback(array('callback' => array($this, 'checkIfLocationIsSet'))),
+        )
+      )
     );
 
     $this->widgetSchema['title']->setAttribute('size', 64);
