@@ -13,6 +13,10 @@ class locationReservationFormFilter extends BaselocationReservationFormFilter
   public function configure()
   {
 
+    if (!($this->getOption('currentUser')) instanceof sfGuardSecurityUser) {
+      throw new InvalidArgumentException("You must pass a user object as an option to this form!");
+    }
+
     $statusChoices = array('' => '') + locationReservation::getStatusChoices();
     $this->widgetSchema['status'] = new sfWidgetFormChoice( array( 'choices' => $statusChoices ) );
     $this->validatorSchema['status'] = new sfValidatorChoice( array( 'required' => false, 'choices' => array_keys($statusChoices)) );

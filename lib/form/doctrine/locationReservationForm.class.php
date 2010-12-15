@@ -17,6 +17,11 @@ class locationReservationForm extends BaselocationReservationForm
   {
 
     $this->removeTimestamps();
+    unset( $this['user_id'] );
+    
+    if (!($this->getOption('currentUser')) instanceof sfGuardSecurityUser) {
+      throw new InvalidArgumentException("You must pass a user object as an option to this form!");
+    }
 
     // Set default start and end date to the next day
     $this->setDefault('accessDate', date('Y-m-d', time() + 86400));
@@ -147,6 +152,12 @@ class locationReservationForm extends BaselocationReservationForm
   
   protected function doUpdateObject($values)
   {
+
+    if ($this->isNew())
+    {
+      $this->getObject()->setUserId($this->getOption('currentUser')->getGuardUser()->getId());
+    }
+
     if (count($this->scheduledRequirementsForDeletion))
     {
       foreach ($this->scheduledRequirementsForDeletion as $names)
