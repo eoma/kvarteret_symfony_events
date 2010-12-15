@@ -21,8 +21,12 @@ generator:
         location_id: { label: Recurring location, help: "Specify recurring location, takes preferance over custom location" }
       list:
         title: Eventlist
-        sort: [startDate, desc]
-        display: [=title, location, arranger, user, startDate, startTime, endDate, endTime]
+        sort: [startDate, asc]
+        layout: stacked
+        display: [=title, startDate, updated_at]
+        params: |
+          %%is_accepted%% %%title%% at %%location%% %%_mergedStartDateTime%% by %%arranger%%. 
+          <small>Updated at %%updated_at%%. Created at %%created_at%%.</small>. 
       filter:  ~
       form:    ~
       edit:
