@@ -63,12 +63,12 @@ class eventForm extends BaseeventForm
 
     $this->widgetSchema['leadParagraph'] = new sfWidgetFormCKEditor();
     $editor = $this->widgetSchema['leadParagraph']->getEditor();
-    $editor->config['toolbar'] = array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord'));
+    $editor->config['toolbar'] = $this->CKEditorToolbarBasic();
     $editor->config['entities'] = false;
 
     $this->widgetSchema['description'] = new sfWidgetFormCKEditor();
     $editor = $this->widgetSchema['description']->getEditor();
-    $editor->config['toolbar'] = array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote', '-', 'Image', 'Link', 'Unlink'));
+    $editor->config['toolbar'] = $this->CKEditorToolbarCommon();
     $editor->config['entities'] = false;
 
 
