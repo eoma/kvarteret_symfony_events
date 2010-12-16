@@ -22,6 +22,15 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
     );
   }
 
+  protected function CKEditorToolbarBasic () {
+    return array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord'));
+  }
+
+  protected function CKEditorToolbarCommon () {
+    return array(array('Source', 'RemoveFormat', '-', 'Copy', 'Cut', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'NumberedList','BulletedList','-','Outdent','Indent','Blockquote', '-', 'Image', 'Link', 'Unlink'));
+  }
+
+
   public function setup()
   {
   }
