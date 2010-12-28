@@ -254,10 +254,6 @@ event: # This table will hold all events.
       notnull: true
       primary: true
       autoincrement: true
-#    parentEvent_id: # parentEvent allows you to organize a festival and connect events to the festival.
-#      type: integer
-#      notnull: false
-#      default: null
     title: { type: string(255), notnull: true }
     leadParagraph: string(800)
     description: string
@@ -274,12 +270,13 @@ event: # This table will hold all events.
     category_id: {type: integer, notnull: true}
     arranger_id: {type: integer, notnull: true}
     user_id: {type: integer, notnull: true}
+    festival_id: integer
   relations:
     arranger: {local: arranger_id, foreign: id, foreignAlias: events}
     recurringLocation: {class: location, local: location_id, foreign: id, foreignAlias: events}
     category: {local: category_id, foreign: id, foreignAlias: events}
     user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: events}
-#    parentEvent: {class: event, local: parentEvent_id, foreign: id, foreignAlias: childEvents}
+    festival: {local: festival_id, foreign: id, foreignAlias: events}
   indexes:
     locations:
       fields: [location_id]
