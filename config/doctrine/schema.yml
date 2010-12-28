@@ -1,8 +1,6 @@
 ---
 
 category:
-  options:
-    orderBy: name ASC
   actAs: [Timestampable]
   columns:
     id:
@@ -12,9 +10,6 @@ category:
     name: string(255)
 
 location:
-# When using the nested set module, it's not possible to sort by any other field than the ones used by nested set
-#  options:
-#    orderBy: name ASC
   actAs: 
     Timestampable: true
     NestedSet:
@@ -107,8 +102,6 @@ requirementCatering:
 
 locationAccessory: # This table can be used to list what accomodations/items a location can provide
   actAs: [Timestampable]
-  options:
-    orderBy: name ASC
   columns:
     id:
       type: integer
@@ -133,8 +126,6 @@ locationUser:
 
 arranger:
   actAs: [Timestampable]
-  options:
-    orderBy: name ASC
   columns:
     id:
       type: integer
@@ -157,8 +148,6 @@ arrangerUser:
       type: unique
 
 loginLog:
-  options:
-    orderBy: timestamp DESC
   columns:
     user_id: integer
     timestamp: timestamp
@@ -184,8 +173,6 @@ discussion: # This table will be used for discussions about events,
             # assign categories (or topics) so that relevant parts
             # of the discussion will go interested parties.
   actAs: [Timestampable]
-  options:
-    orderBy: created_at ASC
   columns:
     id:
       type: integer
@@ -227,8 +214,6 @@ calendar: # This table will hold calendar names and other data.
 
 event: # This table will hold all events.
   actAs: [Timestampable]
-  options:
-    orderBy: [startDate ASC, startTime ASC, title ASC]
   columns:
     id:
       type: integer
