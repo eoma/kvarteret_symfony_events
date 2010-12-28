@@ -211,6 +211,40 @@ calendar: # This table will hold calendar names and other data.
       autoincrement: true
     name: string(255)
 
+festival: # This table will hold all festivals
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer
+      notnull: true
+      primary: true
+      autoincrement: true
+    title: { type: string(255), notnull: true }
+    leadParagraph: string(800)
+    description: string
+    linkout: {type: string(255), notnull: false}
+    startDate: date
+    startTime: time
+    endDate: date
+    endTime: time
+    customLocation: {type: string(255), notnull: false}
+    location_id: integer
+  relations:
+    commonLocation: {class: location, local: location_id, foreign: id, foreignAlias: festivals}
+    arrangers:
+      class: arranger
+      refClass: festivalArranger
+      foreignAlias: festivals
+
+festivalArranger: # This table will hold relations between festivals and arrangers
+  columns:
+    festival_id: {type: integer, primary: true}
+    arranger_id: {type: integer, primary: true}
+  relations:
+    festival:
+      onDelete: CASCADE
+    arranger:
+      onDelete: CASCADE
 
 event: # This table will hold all events.
   actAs: [Timestampable]
