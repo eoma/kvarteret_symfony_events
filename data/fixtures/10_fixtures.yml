@@ -1,3 +1,21 @@
+festival:
+  testFestival:
+    title: Test festival
+    leadParagraph: <p><b>Fuck <em>yeah</em></b></p>
+    startDate: "2012-03-17"
+    startTime: "14:00:00"
+    endDate: "2012-03-20"
+    endTime: "15:00:00"
+    commonLocation: Kvarteret
+
+festivalArranger:
+  testASF:
+    arranger: ASF
+    festival: testFestival
+  testRF:
+    arranger: RF
+    festival: testFestival
+
 event:
   testEvent:
     title: A little test event far in the future
@@ -8,7 +26,6 @@ event:
     endTime: "15:00:00"
     recurringLocation: Teglverket
     arranger: RF
-    category: concert
     user: User_admin
     is_public: true
   testEvent2: 
@@ -20,7 +37,6 @@ event:
     endTime: "15:00:00"
     customLocation: Some remote area
     arranger: ASF
-    category: concert
     user: arranger
     is_public: true
   testEvent3:
@@ -33,6 +49,51 @@ event:
     endTime: "15:00:00"
     recurringLocation: Tivoli
     arranger: RF
-    category: debate
     user: User_admin
     is_public: true
+  festivalEventOne:
+    title: Festival event one
+    description: <p>abc one</p>
+    leadParagraph: testy test <b>one</b>
+    startDate: "2012-03-18"
+    startTime: "14:00:00"
+    endDate: "2012-03-19"
+    endTime: "15:00:00"
+    recurringLocation: Teglverket
+    arranger: RF
+    user: arranger
+    is_public: true
+    festival: testFestival
+  festivalEventTwo:
+    title: Festival event two
+    description: <p>abc two</p>
+    leadParagraph: testy test <b>two</b>
+    startDate: "2012-03-19"
+    startTime: "14:00:00"
+    endDate: "2012-03-20"
+    endTime: "15:00:00"
+    recurringLocation: Speilsalen
+    arranger: RF
+    user: arranger
+    is_public: true
+    festival: testFestival
+
+eventCategory:
+  testEventCategory:
+    event: testEvent
+    category: debate
+  testEvent2Category:
+    event: testEvent2
+    category: concert
+  testEvent3Category:
+    event: testEvent3
+    category: debate
+  festivalEventOneCategory:
+    event: festivalEventOne
+    category: concert
+  festivalEventTwoCategory:
+    event: festivalEventTwo
+    category: concert
+  festivalEventTwoCategory2:
+    event: festivalEventTwo
+    category: debate
