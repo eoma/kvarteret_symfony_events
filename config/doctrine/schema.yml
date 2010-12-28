@@ -267,20 +267,27 @@ event: # This table will hold all events.
     is_public: {type: boolean, default: false}
     customLocation: {type: string(255), notnull: false}
     location_id: integer # This will be used for locations that recur, instead of manually typing locations.
-    category_id: {type: integer, notnull: true}
     arranger_id: {type: integer, notnull: true}
     user_id: {type: integer, notnull: true}
     festival_id: integer
   relations:
     arranger: {local: arranger_id, foreign: id, foreignAlias: events}
     recurringLocation: {class: location, local: location_id, foreign: id, foreignAlias: events}
-    category: {local: category_id, foreign: id, foreignAlias: events}
     user: {class: sfGuardUser, local: user_id, foreign: id, foreignAlias: events}
+    categories: {class: category, refClass: eventCategory, foreignAlias: events}
     festival: {local: festival_id, foreign: id, foreignAlias: events}
   indexes:
     locations:
       fields: [location_id]
     arrangers:
       fields: [arranger_id]
-    categories:
-      fields: [category_id]
+
+eventCategory:
+  columns:
+    event_id: {type: integer, primary: true}
+    category_id: {type: integer, primary: true}
+  relations:
+    event:
+      onDelete: CASCADE
+    category:
+      onDelete: CASCADE
