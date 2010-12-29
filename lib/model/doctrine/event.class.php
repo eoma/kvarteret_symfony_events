@@ -24,7 +24,7 @@ class event extends Baseevent
     if (!$this->location_id) {
       return $this->customLocation;
     } else {
-      return $this->getRecurringLocation();
+      return $this->getRecurringLocation()->getRenderedLocationHierarchy();
     }
   }
 
