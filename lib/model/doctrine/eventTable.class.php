@@ -36,5 +36,7 @@ class eventTable extends Doctrine_Table
         $q->orderBy($rootAlias . '.startDate asc, ' .
                     $rootAlias . '.startTime asc, ' .
                     $rootAlias . '.title asc');
+
+        return $q;
     }
 }
