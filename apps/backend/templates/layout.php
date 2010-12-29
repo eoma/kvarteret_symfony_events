@@ -24,6 +24,9 @@
             <?php echo link_to('Events', 'event') ?>
           </li>
           <li>
+            <?php echo link_to('Festivals', 'festival') ?>
+          </li>
+          <li>
             <?php echo link_to('Categories', 'category') ?>
           </li>
           <li>
