@@ -20,6 +20,24 @@ class eventActions extends autoEventActions
     $this->configuration->setUser($this->getUser());
   }
 
+  public function executeShow(sfWebRequest $request) {
+    $this->event = $this->getRoute()->getObject();
+  }
+
+  public function executeNew(sfWebRequest $request)
+  {
+
+    $options = $this->configuration->getFormOptions();
+
+    if ($request->hasParameter('festival_id'))
+    {
+      $options['festival_id'] = $request->getParameter('festival_id');
+    }
+
+    $this->form = $this->configuration->getForm(null, $options);
+    $this->event = $this->form->getObject();
+  }
+
   protected function buildQuery()
   {
     $query = parent::buildQuery();
