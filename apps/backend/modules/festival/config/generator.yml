@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           festival
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          festival
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: Festival list
+        sort: [startDate, asc]
+        layout: stacked
+        display: [=title, startDate, updated_at]
+        params: |
+          %%_linkToShowFestival%%<br />At %%location%% %%_mergedStartDateTime%% by %%_renderedFestivalArrangers%%.<br />
+          <small>Updated at %%updated_at%%. Created at %%created_at%%.</small>
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

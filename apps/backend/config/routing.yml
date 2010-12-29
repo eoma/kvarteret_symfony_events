@@ -1,3 +1,12 @@
+festival:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                festival
+    module:               festival
+    prefix_path:          /festival
+    column:               id
+    with_wildcard_routes: true
+
 location_reservation:
   class: sfDoctrineRouteCollection
   options:
