@@ -45,6 +45,10 @@ class eventForm extends BaseeventForm
       'add_empty' => true,
     )));
 
+    if ($this->getOption('festival_id', false)) {
+      $this->widgetSchema['festival_id']->setOption('default', $this->getOption('festival_id'));
+    }
+
     $this->validatorSchema->setPostValidator(
       new sfValidatorAnd(
         array(
@@ -71,6 +75,8 @@ class eventForm extends BaseeventForm
     $editor->config['toolbar'] = $this->CKEditorToolbarCommon();
     $editor->config['entities'] = false;
 
+    $this->widgetSchema['categories_list']->setOption('expanded', true);
+    $this->validatorSchema['categories_list']->setOption('required', true);
 
     if ( ! $this->getOption('currentUser')->hasGroup('admin') ) {
       // Widget arranger_is of type sfWidgetFormDoctrineChoice, which supports queries.
