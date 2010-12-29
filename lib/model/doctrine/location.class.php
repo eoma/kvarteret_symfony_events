@@ -12,4 +12,23 @@
  */
 class location extends Baselocation
 {
+
+  /**
+   * Will return a string with complete location hierarchy as string
+   */
+  public function getRenderedLocationHierarchy()
+  {
+    $nameHierarchy = '';
+
+    $elem = $this;
+    $nameHierarchy = $elem->getName();
+
+    while ($elem->getNode()->hasParent()) {
+      $elem = $elem->getNode()->getParent();
+      $nameHierarchy = $elem->getName() . ', ' . $nameHierarchy;
+    }
+
+    return $nameHierarchy;
+  }
+
 }
