@@ -11,6 +11,7 @@
     <div id="menu">
       <ul>
         <li><?php echo link_to('Main', '@homepage') ?></li>
+        <li><?php echo link_to('Festivals', 'festival/index') ?></li>
         <li><?php echo link_to('Locations', 'location/index') ?></li>
         <li><?php echo link_to('Arrangers', 'arranger/index') ?></li>
         <li><?php echo link_to('Categories', 'category/index') ?></li>
