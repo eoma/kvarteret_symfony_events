@@ -187,6 +187,38 @@ class apiActions extends sfActions
     return $this->returnJson($data);
   }
 
+  public function executeFestival(sfWebRequest $request) {
+    $subAction = $request->getParameter('subaction', 'get');
+
+    if (($subAction == 'get') && ($request->hasParameter('id'))) {
+      $limit = 1;
+      $offset = 0;
+
+      $q = Doctrine_Core::getTable('festival')
+        ->createQuery('f');
+      Doctrine_Core::getTable('festival')->defaultQueryOptions($q);
+      $q->where('f.id = ?', $request->getParameter('id'))
+        ->limit($limit)
+        ->offset($offset)
+        ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+	
+      $festival = $q->execute();
+
+      $totalCount = $q->count();
+      $count = count($festival);
+
+      $data = array(
+        'limit' => $limit,
+        'offset' => $offset,
+        'count' => $count,
+        'totalCount' => $totalCount,
+        'data' => $festival,
+      );
+    }
+
+    return $this->returnJson($data);
+  }
+
   public function executeUpcomingEvents (sfWebRequest $request) {
     // This action can accept the parameters limit and offset
 
@@ -246,6 +278,12 @@ class apiActions extends sfActions
       $category_id = explode(',', $request->getParameter('category_id'));
       $category_id = array_map(create_function('$value', 'return (int)$value;'), $category_id);
       $q->andWhereIn('c.id', $category_id);
+    }
+
+    if ($request->hasParameter('festival_id')) {
+      $festival_id = explode(',', $request->getParameter('festival_id'));
+      $festival_id = array_map(create_function('$value', 'return (int)$value;'), $festival_id);
+      $q->andWhereIn('e.festival_id', $festival_id);
     }
 
     if ($request->hasParameter('startDate')) {
