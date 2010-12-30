@@ -32,7 +32,7 @@ class eventTable extends Doctrine_Table
     public function defaultSelect(Doctrine_Query $q) {
         //This function assumes you've used eventTable::defaultJoins
 
-        $q->select('e.*, l.name, a.name, c.name, f.title');
+        $q->select('e.*, l.name, a.name, c.name, f.title, f.startDate, f.startTime');
 
         return $q;
     }
