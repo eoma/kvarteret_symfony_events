@@ -9,7 +9,7 @@
       <th>Linkout</th>
       <th>Start</th>
       <th>End</th>
-      <th>Category</th>
+      <th>Categories</th>
       <th>Arranger</th>
     </tr>
   </thead>
@@ -27,7 +27,7 @@
       <td><?php echo $event['linkout'] ?></td>
       <td><?php echo $event['startDate'] . ' ' .$event['startTime']  ?></td>
       <td><?php echo $event['endDate'] . ' ' . $event['endTime'] ?></td>
-      <td><?php echo link_to($event['category']['name'], 'category/show?id=' . $event['category_id']) ?></td>
+      <td><?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?></td>
       <td><?php echo link_to($event['arranger']['name'], 'arranger/show?id=' . $event['arranger_id']) ?></td>
     </tr>
     <?php endforeach; ?>

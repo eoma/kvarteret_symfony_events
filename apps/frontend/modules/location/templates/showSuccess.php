@@ -36,7 +36,7 @@
       <th>Start</th>
       <th>End</th>
       <th>Arranger</th>
-      <th>Category</th>
+      <th>Categories</th>
     </tr>
   </thead>
   <tbody>
@@ -47,7 +47,7 @@
       <td><?php echo $event->getStartDate() . ' ' . $event->getStartTime() ?></td>
       <td><?php echo $event->getEndDate() . ' ' . $event->getEndTime() ?></td>
       <td><a href="<?php echo url_for('arranger/show?id=' . $event->getArrangerId()) ?>"><?php echo $event->getArranger() ?></a></td>
-      <td><a href="<?php echo url_for('category/show?id=' . $event->getCategoryId()) ?>"><?php echo $event->getCategory() ?></a></td>
+      <td><?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?></td>
     </tr>
   <?php endforeach; ?>
   </tbody>

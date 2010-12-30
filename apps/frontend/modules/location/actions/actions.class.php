@@ -30,9 +30,10 @@ class locationActions extends sfActions
       ->createQuery('e')
       ->select('e.*, a.name, c.name')
       ->leftJoin('e.arranger a')
-      ->leftJoin('e.category c')
+      ->leftJoin('e.categories c')
       ->where('e.location_id = ?', $request->getParameter('id'))
       ->andWhere('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
+      ->orderBy('e.startDate asc, e.startTime asc, e.title asc')
       ->limit(20)
       ->offset(0)
       ->execute();

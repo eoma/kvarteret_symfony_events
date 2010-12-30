@@ -27,7 +27,7 @@ use_helper('Date');
     <b>Who?</b> <?php echo link_to($event['arranger']['name'], 'arranger/show/?id=' . $event['arranger_id']) ?>
   </p>
   <p>
-    <b>What?</b> <?php echo link_to($event['category']['name'], 'category/show/?id=' . $event['category_id'])?>
+    <b>What?</b> <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?>
   </p>
   <p>
     <small>Created at <?php echo format_datetime($event['created_at']) ?>. Updated at <?php echo format_datetime($event['updated_at']) ?>.</small>

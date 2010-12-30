@@ -35,7 +35,7 @@
       <th>Description</th>
       <th>Start</th>
       <th>End</th>
-      <th>Category</th>
+      <th>Categories</th>
       <th>Location</th>
     </tr>
   </thead>
@@ -46,7 +46,7 @@
       <td><?php echo $event['description'] ?></td>
       <td><?php echo $event['startDate'] . ' ' . $event['startTime'] ?></td>
       <td><?php echo $event['endDate'] . ' ' . $event['endTime'] ?></td>
-      <td><a href="<?php echo url_for('category/show?id=' . $event['category_id']) ?>"><?php echo $event['category']['name'] ?></a></td>
+      <td><?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?></td>
       <td>
       <?php if (!$event['location_id']): ?>
         <?php echo $event['customLocation'] ?>

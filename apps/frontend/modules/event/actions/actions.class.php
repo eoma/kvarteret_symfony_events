@@ -22,8 +22,9 @@ class eventActions extends sfActions
       ->select('e.*, a.name, l.name, c.name, u.name')
       ->leftJoin('e.arranger a')
       ->leftJoin('e.recurringLocation l')
-      ->leftJoin('e.category c')
+      ->leftJoin('e.categories c')
       ->where('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
+      ->orderBy('e.startDate asc, e.startTime asc, e.title asc, c.name asc')
       ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
       ->execute();
   }
@@ -37,8 +38,9 @@ class eventActions extends sfActions
       ->select('e.*, a.name, l.name, c.name, u.name')
       ->leftJoin('e.arranger a')
       ->leftJoin('e.recurringLocation l')
-      ->leftJoin('e.category c')
+      ->leftJoin('e.categories c')
       ->where('e.id = ?', $request->getParameter('id'))
+      ->orderBy('c.name asc')
       ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
       ->fetchOne();
 
