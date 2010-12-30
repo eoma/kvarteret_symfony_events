@@ -163,12 +163,9 @@ class apiActions extends sfActions
       $offset = 0;
 
       $q = Doctrine_Core::getTable('event')
-        ->createQuery('e')
-        ->select('e.*, l.id, l.name, a.id, a.name, c.id, c.name')
-        ->leftJoin('e.recurringLocation l')
-        ->leftJoin('e.arranger a')
-        ->leftJoin('e.category c')
-	->where('e.id = ?', $request->getParameter('id'))
+        ->createQuery('e');
+      Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+      $q->where('e.id = ?', $request->getParameter('id'))
         ->limit($limit)
         ->offset($offset)
         ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
@@ -200,12 +197,9 @@ class apiActions extends sfActions
     }
 
     $q = Doctrine_Core::getTable('event')
-      ->createQuery('e')
-      ->select('e.*, l.id, l.name, a.id, a.name, c.id, c.name')
-      ->leftJoin('e.recurringLocation l')
-      ->leftJoin('e.arranger a')
-      ->leftJoin('e.category c')
-      ->where('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
+      ->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+    $q->where('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
       ->limit($limit)
       ->offset($offset)
       ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
@@ -232,11 +226,8 @@ class apiActions extends sfActions
     // limit, offset
 
     $q = Doctrine_Core::getTable('event')
-      ->createQuery('e')
-      ->select('e.*, l.id, l.name, a.id, a.name, c.id, c.name')
-      ->leftJoin('e.recurringLocation l')
-      ->leftJoin('e.arranger a')
-      ->leftJoin('e.category c');
+      ->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
 
     if ($request->hasParameter('location_id')) {
       $location_id = explode(',', $request->getParameter('location_id'));
