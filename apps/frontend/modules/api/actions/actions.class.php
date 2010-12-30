@@ -227,7 +227,8 @@ class apiActions extends sfActions
 
     $q = Doctrine_Core::getTable('event')
       ->createQuery('e');
-    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+    Doctrine_Core::getTable('event')->defaultJoins($q);
+    $q->select('e.id');
 
     if ($request->hasParameter('location_id')) {
       $location_id = explode(',', $request->getParameter('location_id'));
@@ -267,6 +268,18 @@ class apiActions extends sfActions
 
     $q->limit($limit)->offset($offset);
 
+    $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $eventIdsResult = $q->execute();
+    $eventIds = array();
+    foreach ($eventIdsResult as $e) {
+       $eventIds[] = $e['id'];
+    }
+
+    $q = Doctrine_Core::getTable('event')->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+
+    $q->whereIn('e.id', $eventIds);
     $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
 
     $events = $q->execute();
