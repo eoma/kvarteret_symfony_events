@@ -29,6 +29,14 @@ class eventTable extends Doctrine_Table
         return $q;
     }
 
+    public function defaultSelect(Doctrine_Query $q) {
+        //This function assumes you've used eventTable::defaultJoins
+
+        $q->select('e.*, l.name, a.name, c.name, f.title');
+
+        return $q;
+    }
+
     public function defaultOrderBy(Doctrine_Query $q)
     {
         $rootAlias = $q->getRootAlias();
@@ -38,5 +46,12 @@ class eventTable extends Doctrine_Table
                     $rootAlias . '.title asc');
 
         return $q;
+    }
+
+    public function defaultQueryOptions(Doctrine_Query $q)
+    {
+        $this->defaultJoins($q);
+        $this->defaultSelect($q);
+        $this->defaultOrderBy($q);
     }
 }
