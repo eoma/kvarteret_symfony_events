@@ -244,7 +244,7 @@ class apiActions extends sfActions
     if ($request->hasParameter('category_id')) {
       $category_id = explode(',', $request->getParameter('category_id'));
       $category_id = array_map(create_function('$value', 'return (int)$value;'), $category_id);
-      $q->andWhereIn('e.category_id', $category_id);
+      $q->andWhereIn('c.id', $category_id);
     }
 
     if ($request->hasParameter('startDate')) {
@@ -266,6 +266,7 @@ class apiActions extends sfActions
     }
 
     $q->limit($limit)->offset($offset);
+
     $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
 
     $events = $q->execute();
