@@ -10,6 +10,14 @@ category:
     name: Konsert
   debate:
     name: Debatt
+  theater:
+    name: Teater
+  cinema:
+    name: Kino
+  club:
+    name: Klubb
+  quiz:
+    name: Quiz
 
 location:
   Kvarteret:
