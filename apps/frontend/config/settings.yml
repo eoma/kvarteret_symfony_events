@@ -33,3 +33,14 @@ all:
 
     # Enable the database manager
     use_database:           true
+
+    # Default charset
+    charset: utf-8
+
+    # Default culture
+    default_culture: en_US
+
+    # Enable internationalization of interface
+    i18n: true
+
+    standard_helpers: [Partial, Cache, I18N]
