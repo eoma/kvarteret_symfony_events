@@ -17,6 +17,23 @@ class eventActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
+
+    if ( ! $request->getParameter('sf_culture') )
+    {
+      if ( $this->getUser()->isFirstRequest() )
+      {
+        $culture = $request->getPreferredCulture(array('en', 'no'));
+        $this->getUser()->setCulture($culture);
+        $this->getUser()->isFirstRequest(false);
+      }
+      else
+      {
+        $culture = $this->getUser()->getCulture();
+      }
+ 
+      $this->redirect('homepage_localized');
+    }
+
     $this->events = Doctrine_Core::getTable('event')
       ->createQuery('e')
       ->select('e.*, a.name, l.name, c.name, u.name')
