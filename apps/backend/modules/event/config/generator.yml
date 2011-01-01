@@ -20,6 +20,7 @@ generator:
         customLocation: { label: Custom location }
         location_id: { label: Recurring location, help: "Specify recurring location, takes preferance over custom location" }
       list:
+        max_per_page: 10
         title: Eventlist
         sort: [startDate, asc, startTime, asc, title, asc]
         layout: stacked

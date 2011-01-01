@@ -15,6 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
+        max_per_page: 10
         title: Festival list
         sort: [startDate, asc]
         layout: stacked
