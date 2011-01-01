@@ -4,7 +4,7 @@ use_helper('Date');
 
 <div id="eventData">
   <p>
-    <b>Where?</b> 
+    <b><?php echo __('Where?') ?></b> 
     <?php 
       if (!$event['location_id']) {
         echo $event['customLocation']; 
@@ -14,23 +14,23 @@ use_helper('Date');
      ?>
   </p>
   <p>
-    <b>When?</b> 
+    <b><?php echo __('When?') ?></b> 
     <?php 
     if ($event['startDate'] == $event['endDate']):
     ?>
-    <?php echo format_date($event['startDate']) ?> from <? echo $event['startTime'] ?> to <?php echo $event['endTime'] ?>
+    <?php echo __('%1% from %2% to %3%',  array('%1%' => format_date($event['startDate']), '%2%' => $event['startTime'], '%3%' => $event['endTime'])) ?>
     <?php else: ?>
-    from <?php echo format_date($event['startDate']) . ' ' . $event['startTime'] ?> to <?php echo format_date($event['endDate']) . ' ' . $event['endTime'] ?>
+    <?php echo __('from %1% to %2%', array('%1%' => format_date($event['startDate']) . ' ' . $event['startTime'], '%2%' => format_date($event['endDate']) . ' ' . $event['endTime'])) ?>
     <?php endif ?>
   </p>
   <p>
-    <b>Who?</b> <?php echo link_to($event['arranger']['name'], 'arranger/show/?id=' . $event['arranger_id']) ?>
+    <b><?php echo __('Who?') ?></b> <?php echo link_to($event['arranger']['name'], 'arranger/show/?id=' . $event['arranger_id']) ?>
   </p>
   <p>
-    <b>What?</b> <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?>
+    <b><?php echo __('What?') ?></b> <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?>
   </p>
   <p>
-    <small>Created at <?php echo format_datetime($event['created_at']) ?>. Updated at <?php echo format_datetime($event['updated_at']) ?>.</small>
+    <small><?php echo __('Created at %1%. Updated at %2%.', array('%1%' => format_datetime($event['created_at']), '%2%' => format_datetime($event['updated_at']))) ?></small>
   </p>
 </div>
 
@@ -41,7 +41,7 @@ use_helper('Date');
  <?echo $event->getRaw('description'); ?>
 
   <?php if (!empty($event['linkout'])): ?>
-  <p>Read more <a href="<?php echo $events['linkout'] ?>">here</a></p>
+  <p><?php echo __('Read more <a href="%1%">here</a>', array('%1%' => $events['linkout'])) ?></p>
   <?php endif ?>
 
 </div>

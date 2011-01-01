@@ -1,11 +1,11 @@
-<h1>Categorys List</h1>
+<h1><?php echo __('Categorys List') ?></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th><?php echo __('Name') ?></th>
+      <th><?php echo __('Created at') ?></th>
+      <th><?php echo __('Updated at') ?></th>
     </tr>
   </thead>
   <tbody>

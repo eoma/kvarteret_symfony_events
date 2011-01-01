@@ -4,7 +4,7 @@ use_helper('I18N', 'Date');
 
 <div id="eventData">
   <p>
-    <b>Where?</b> 
+    <b><?php echo __('Where?') ?></b> 
     <?php 
       if (!$festival['location_id']) {
         echo $festival['customLocation']; 
@@ -14,17 +14,17 @@ use_helper('I18N', 'Date');
      ?>
   </p>
   <p>
-    <b>When?</b> 
+    <b><?php echo __('When?') ?></b> 
     <?php 
     if ($festival['startDate'] == $festival['endDate']):
     ?>
-    <?php echo format_date($festival['startDate']) ?> from <? echo $festival['startTime'] ?> to <?php echo $festival['endTime'] ?>
+    <?php echo __('%1% from %2% to %3%',  array('%1%' => format_date($festival['startDate']), '%2%' => $festival['startTime'], '%3%' => $festival['endTime'])) ?>
     <?php else: ?>
-    from <?php echo format_date($festival['startDate']) . ' ' . $festival['startTime'] ?> to <?php echo format_date($festival['endDate']) . ' ' . $festival['endTime'] ?>
+    <?php echo __('from %1% to %2%', array('%1%' => format_date($festival['startDate']) . ' ' . $festival['startTime'], '%2%' => format_date($festival['endDate']) . ' ' . $festival['endTime'])) ?>
     <?php endif ?>
   </p>
   <p>
-    <b>Who?</b>
+    <b><?php echo __('Who?') ?></b>
   </p>
   <?php
   if (count($festival['arrangers']) > 0) {
@@ -38,10 +38,10 @@ use_helper('I18N', 'Date');
   }
   ?>
   <p>
-    <small>Created at <?php echo format_datetime($festival['created_at']) ?>. Updated at <?php echo format_datetime($festival['updated_at']) ?>.</small>
+    <small><?php echo __('Created at %1%. Updated at %2%.', array('%1%' => format_datetime($festival['created_at']), '%2%' => format_datetime($festival['updated_at']))) ?></small>
   </p>
   <p>
-    <?php echo link_to('Back to list', 'festival/index') ?>
+    <?php echo link_to(__('Back to list'), 'festival/index') ?>
   </p>
 </div>
 
@@ -52,10 +52,10 @@ use_helper('I18N', 'Date');
  <?echo $festival->getRaw('description'); ?>
 
   <?php if (!empty($festival['linkout'])): ?>
-  <p>Read more <a href="<?php echo $festival['linkout'] ?>">here</a></p>
+  <p><?php echo __('Read more <a href="%1%">here</a>', array('%1%' => $festival['linkout'])) ?></p>
   <?php endif ?>
 
-  <h2>Events at this festival</h2>
+  <h2><?php echo __('Events at this festival') ?></h2>
 
   <?php if (count($events) > 0): ?>
   <table>
@@ -65,15 +65,15 @@ use_helper('I18N', 'Date');
         <td>
           <?php echo link_to($event['title'], 'event/show?id=' . $event['id']) ?><br />
           <?php include_partial('event/startEndDateTime', array('event' => $event)) ?><br />
-          Location: <?php include_partial('event/location', array('event' => $event)) ?><br />
-          Categories: <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . " "; } ?>
+          <?php echo __('Location') ?>: <?php include_partial('event/location', array('event' => $event)) ?><br />
+          <?php echo __('Categories') ?>: <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . " "; } ?>
         </td>
       </tr>
       <?php endforeach; ?>
     </tbody>
   </table>
   <?php else: ?>
-  <p>No events at this festival</p>
+  <p><?php echo __('No events at this festival') ?></p>
   <?php endif ?>
 </div>
 

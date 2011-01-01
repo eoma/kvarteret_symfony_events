@@ -1,23 +1,23 @@
 <table>
   <tbody>
     <tr>
-      <th>Id:</th>
+      <th><?php echo __('Id') ?>:</th>
       <td><?php echo $arranger['id'] ?></td>
     </tr>
     <tr>
-      <th>Name:</th>
+      <th><?php echo __('Name') ?>:</th>
       <td><?php echo $arranger['name'] ?></td>
     </tr>
     <tr>
-      <th>Description:</th>
+      <th><?php __('Description') ?>:</th>
       <td><?php echo $arranger['description'] ?></td>
     </tr>
     <tr>
-      <th>Created at:</th>
+      <th><?php echo __('Created at') ?>:</th>
       <td><?php echo $arranger['created_at'] ?></td>
     </tr>
     <tr>
-      <th>Updated at:</th>
+      <th><? echo __('Updated at') ?>:</th>
       <td><?php echo $arranger['updated_at'] ?></td>
     </tr>
   </tbody>
@@ -25,18 +25,18 @@
 
 <hr />
 
-<a href="<?php echo url_for('arranger/index') ?>">List</a>
+<a href="<?php echo url_for('arranger/index') ?>"><?php echo __('Back to list') ?></a>
 
-<h2>Events scheduled for <?php echo $arranger['name'] ?></h2>
+<h2><?php echo __('Events scheduled for %1%', array('%1%' => $arranger['name'])) ?></h2>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Categories</th>
-      <th>Location</th>
+      <th><?php echo __('Title') ?></th>
+      <th><?php echo __('Description') ?></th>
+      <th><?php echo __('Start') ?></th>
+      <th><?php echo __('End') ?></th>
+      <th><?php echo __('Categories') ?></th>
+      <th><?php echo __('Location') ?></th>
     </tr>
   </thead>
   <tbody>

@@ -1,19 +1,19 @@
 <table>
   <tbody>
     <tr>
-      <th>Id:</th>
+      <th><?php echo __('Id') ?>:</th>
       <td><?php echo $category['id'] ?></td>
     </tr>
     <tr>
-      <th>Name:</th>
+      <th><?php echo __('Name') ?>:</th>
       <td><?php echo $category['name'] ?></td>
     </tr>
     <tr>
-      <th>Created at:</th>
+      <th><?php echo __('Created at') ?>:</th>
       <td><?php echo $category['created_at'] ?></td>
     </tr>
     <tr>
-      <th>Updated at:</th>
+      <th><?php echo __('Updated at') ?>:</th>
       <td><?php echo $category['updated_at'] ?></td>
     </tr>
   </tbody>
@@ -21,18 +21,18 @@
 
 <hr />
 
-<a href="<?php echo url_for('category/index') ?>">List</a>
+<a href="<?php echo url_for('category/index') ?>"><?php echo __('Back to list') ?></a>
 
-<h2>Events scheduled for <?php echo $category['name'] ?></h2>
+<h2><?php echo __('Events scheduled for %1%', array('%1%' => $category['name'])) ?></h2>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Arranger</th>
-      <th>Location</th>
+      <th><?php echo __('Title') ?></th>
+      <th><?php echo __('Description') ?></th>
+      <th><?php echo __('Start') ?></th>
+      <th><?php echo __('End') ?></th>
+      <th><?php echo __('Arranger') ?></th>
+      <th><?php echo __('Location') ?></th>
     </tr>
   </thead>
   <tbody>

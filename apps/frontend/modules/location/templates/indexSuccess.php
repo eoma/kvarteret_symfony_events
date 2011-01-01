@@ -1,17 +1,17 @@
-<h1>Locations List</h1>
+<h1><?php echo __('Locations List') ?></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-      <th>Root</th>
-      <th>Lft</th>
-      <th>Rgt</th>
-      <th>Level</th>
+      <th><?php echo __('Id') ?></th>
+      <th><?php echo __('Name') ?></th>
+      <th><?php echo __('Description') ?></th>
+      <th><?php echo __('Created at') ?></th>
+      <th><?php echo __('Updated at') ?></th>
+      <th><?php echo __('Root') ?></th>
+      <th><?php echo __('Lft') ?></th>
+      <th><?php echo __('Rgt') ?></th>
+      <th><?php echo __('Level') ?></th>
     </tr>
   </thead>
   <tbody>

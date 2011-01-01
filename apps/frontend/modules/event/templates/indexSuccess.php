@@ -1,16 +1,16 @@
-<h1>Events List</h1>
+<h1><?php echo __('Events List') ?></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Lead paragraph</th>
-      <th>Location</th>
-      <th>Linkout</th>
-      <th>Start</th>
-      <th>End</th>
-      <th>Categories</th>
-      <th>Arranger</th>
+      <th><?php echo __('Title') ?></th>
+      <th><?php echo __('Lead paragraph') ?></th>
+      <th><?php echo __('Location') ?></th>
+      <th><?php echo __('Linkout') ?></th>
+      <th><?php echo __('Start') ?></th>
+      <th><?php echo __('End') ?></th>
+      <th><?php echo __('Categories') ?></th>
+      <th><?php echo __('Arranger') ?></th>
     </tr>
   </thead>
   <tbody>

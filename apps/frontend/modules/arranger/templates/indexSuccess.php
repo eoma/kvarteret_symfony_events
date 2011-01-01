@@ -1,13 +1,13 @@
-<h1>Arrangers List</h1>
+<h1><?php echo __('Arrangers List') ?></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th><?php echo __('Id') ?></th>
+      <th><?php echo __('Name') ?></th>
+      <th><?php echo __('Description') ?></th>
+      <th><?php echo __('Created at') ?></th>
+      <th><?php echo __('Updated at') ?></th>
     </tr>
   </thead>
   <tbody>
