@@ -1,3 +1,6 @@
+<?php slot('title', $arranger['name'] . ' - ' . __('Arranger')) ?>
+<h1><?php echo $arragner['name'] ?></h1>
+
 <table>
   <tbody>
     <tr>
@@ -9,7 +12,7 @@
       <td><?php echo $arranger['name'] ?></td>
     </tr>
     <tr>
-      <th><?php __('Description') ?>:</th>
+      <th><?php echo __('Description') ?>:</th>
       <td><?php echo $arranger['description'] ?></td>
     </tr>
     <tr>

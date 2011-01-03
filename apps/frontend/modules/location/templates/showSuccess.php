@@ -1,3 +1,6 @@
+<?php slot('title', $location->getName() . ' - ' . __('Location')) ?>
+<h1><?php echo $location->getName() ?></h1>
+
 <table>
   <tbody>
     <tr>
@@ -27,7 +30,7 @@
 
 <a href="<?php echo url_for('location/index') ?>"><?php echo __('Back to list') ?></a>
 
-<h2><?php echo __('Events scheduled for %1%', array('%1%' => $location->getName()) ?></h2>
+<h2><?php echo __('Events scheduled for %1%', array('%1%' => $location->getName())) ?></h2>
 <table>
   <thead>
     <tr>

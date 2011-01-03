@@ -1,4 +1,5 @@
-<h1><?php echo __('Locations List') ?></h1>
+<?php echo slot('title', __('Location list')) ?>
+<h1><?php echo __('Location list') ?></h1>
 
 <table>
   <thead>

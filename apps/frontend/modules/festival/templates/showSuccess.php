@@ -1,6 +1,8 @@
 <?php
 use_helper('I18N', 'Date');
+slot('title', $festival['title'] . ' - ' . __('Festival'));
 ?>
+<h1><?php echo $festival['title'] ?></h1>
 
 <div id="eventData">
   <p>

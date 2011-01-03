@@ -1,3 +1,6 @@
+<?php slot('title', $category['name'] . ' - ' . __('Category')) ?>
+<h1><?php echo $category['name'] ?></h1>
+
 <table>
   <tbody>
     <tr>

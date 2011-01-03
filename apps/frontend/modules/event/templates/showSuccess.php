@@ -1,6 +1,8 @@
 <?php 
 use_helper('Date');
+slot('title', $event['title']);
 ?>
+<h1><?php echo $event['title'] ?></h1>
 
 <div id="eventData">
   <p>
@@ -29,6 +31,11 @@ use_helper('Date');
   <p>
     <b><?php echo __('What?') ?></b> <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?>
   </p>
+  <?php if ($event['festival_id'] > 0): ?>
+  <p>
+    <?php include_partial('eventHasFestival', array('event' => $event)) ?>
+  </p>
+  <?php endif ?>
   <p>
     <small><?php echo __('Created at %1%. Updated at %2%.', array('%1%' => format_datetime($event['created_at']), '%2%' => format_datetime($event['updated_at']))) ?></small>
   </p>

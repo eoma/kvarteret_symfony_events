@@ -1,4 +1,5 @@
-<h1><?php echo __('Categorys List') ?></h1>
+<?php slot('title', __('Category list')) ?>
+<h1><?php echo __('Category list') ?></h1>
 
 <table>
   <thead>

@@ -1,4 +1,5 @@
-<h1><?php echo __('Arrangers List') ?></h1>
+<?php slot('title', 'Arranger list') ?>
+<h1><?php echo __('Arranger list') ?></h1>
 
 <table>
   <thead>

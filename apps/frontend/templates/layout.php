@@ -3,7 +3,7 @@
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
-    <?php include_title() ?>
+    <title><?php include_slot('title') ?> - <?php echo __('Event Calendar') ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
   </head>

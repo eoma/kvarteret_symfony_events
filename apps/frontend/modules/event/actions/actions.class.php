@@ -50,16 +50,13 @@ class eventActions extends sfActions
   {
     // Instead of using objects we'll be using associative arrays
     // because of performance on the public interface.
-    $this->event = Doctrine_Core::getTable('event')
-      ->createQuery('e')
-      ->select('e.*, a.name, l.name, c.name, u.name')
-      ->leftJoin('e.arranger a')
-      ->leftJoin('e.recurringLocation l')
-      ->leftJoin('e.categories c')
-      ->where('e.id = ?', $request->getParameter('id'))
-      ->orderBy('c.name asc')
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->fetchOne();
+    $q = Doctrine_Core::getTable('event')
+      ->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+    $q->where('e.id = ?', $request->getParameter('id'))
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $this->event = $q->fetchOne();
 
     $this->forward404Unless($this->event);
   }

@@ -1,4 +1,5 @@
-<h1><?php echo __('Events List') ?></h1>
+<?php slot('title', __('Event list')) ?>
+<h1><?php echo __('Event list') ?></h1>
 
 <table>
   <thead>
