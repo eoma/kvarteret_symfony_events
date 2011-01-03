@@ -48,6 +48,6 @@ class event extends Baseevent
   public function setLeadParagraph ($value) {
     $this->myHTMLPurifierInstance();
 
-    $this->_set('leadParagraph', trim($this->purifier->basicHtml($value)));
+    $this->_set('leadParagraph', trim($this->purifier->noHtml($value)));
   }
 }
