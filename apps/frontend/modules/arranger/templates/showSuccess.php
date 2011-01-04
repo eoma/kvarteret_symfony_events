@@ -1,5 +1,5 @@
 <?php slot('title', $arranger['name'] . ' - ' . __('Arranger')) ?>
-<h1><?php echo $arragner['name'] ?></h1>
+<h1><?php echo $arranger['name'] ?></h1>
 
 <table>
   <tbody>
@@ -30,34 +30,10 @@
 
 <a href="<?php echo url_for('arranger/index') ?>"><?php echo __('Back to list') ?></a>
 
-<h2><?php echo __('Events scheduled for %1%', array('%1%' => $arranger['name'])) ?></h2>
-<table>
-  <thead>
-    <tr>
-      <th><?php echo __('Title') ?></th>
-      <th><?php echo __('Description') ?></th>
-      <th><?php echo __('Start') ?></th>
-      <th><?php echo __('End') ?></th>
-      <th><?php echo __('Categories') ?></th>
-      <th><?php echo __('Location') ?></th>
-    </tr>
-  </thead>
-  <tbody>
-  <?php foreach($events as $event): ?>
-    <tr>
-      <td><a href="<?php echo url_for('event/show?id=' . $event['id']) ?>"><?php echo $event['title'] ?></a></td>
-      <td><?php echo $event['description'] ?></td>
-      <td><?php echo $event['startDate'] . ' ' . $event['startTime'] ?></td>
-      <td><?php echo $event['endDate'] . ' ' . $event['endTime'] ?></td>
-      <td><?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . ' '; } ?></td>
-      <td>
-      <?php if (!$event['location_id']): ?>
-        <?php echo $event['customLocation'] ?>
-      <?php else: ?>
-        <a href="<?php echo url_for('location/show?id=' . $event['location_id']) ?>"><?php echo $event['recurringLocation']['name'] ?></a>
-      <?php endif ?>
-      </td>
-    </tr>
-  <?php endforeach; ?>
-  </tbody>
-</table>
+<h2 id="events"><?php echo __('Events scheduled for %1%', array('%1%' => $arranger['name'])) ?></h2>
+
+<?php include_partial('event/listShortDescription', array('events' => $pager->getResults())) ?>
+
+<?php if ($pager->haveToPaginate()): ?>
+  <?php include_partial('global/pager', array('route' => 'arranger/show?id=' . $arranger['id'], 'pager' => $pager)) ?>
+<?php endif ?>

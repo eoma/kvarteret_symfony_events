@@ -59,23 +59,10 @@ slot('title', $festival['title'] . ' - ' . __('Festival'));
 
   <h2><?php echo __('Events at this festival') ?></h2>
 
-  <?php if (count($events) > 0): ?>
-  <table>
-    <tbody>
-      <?php foreach ($events as $event): ?>
-      <tr>
-        <td>
-          <?php echo link_to($event['title'], 'event/show?id=' . $event['id']) ?><br />
-          <?php include_partial('event/startEndDateTime', array('event' => $event)) ?><br />
-          <?php echo __('Location') ?>: <?php include_partial('event/location', array('event' => $event)) ?><br />
-          <?php echo __('Categories') ?>: <?php foreach ($event['categories'] as $c) { echo link_to($c['name'], 'category/show?id=' . $c['id']) . " "; } ?>
-        </td>
-      </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-  <?php else: ?>
-  <p><?php echo __('No events at this festival') ?></p>
+  <?php include_partial('event/listShortDescription', array('events' => $pager->getResults())) ?>
+
+  <?php if ($pager->haveToPaginate()): ?>
+    <?php include_partial('global/pager', array('route' => 'festival/show?id=' . $festival['id'], 'pager' => $pager)) ?>
   <?php endif ?>
 </div>
 
