@@ -17,10 +17,15 @@ class arrangerActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->arrangers = Doctrine_Core::getTable('arranger')
+    $q = Doctrine_Core::getTable('arranger')
       ->createQuery('a')
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->execute();
+      ->orderBy('a.name asc')
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $this->pager = new sfDoctrinePager('event', sfConfig::get('app_max_arrangers_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)
@@ -32,17 +37,17 @@ class arrangerActions extends sfActions
       ->fetchOne();
 
     $this->forward404Unless($this->arranger);
-    $this->events = Doctrine_Core::getTable('event')
-      ->createQuery('e')
-      ->select('e.*, c.name, l.name')
-      ->leftJoin('e.categories c')
-      ->leftJoin('e.recurringLocation l')
-      ->where('e.arranger_id = ?', $request->getParameter('id'))
+    $q = Doctrine_Core::getTable('event')
+      ->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+    
+    $q->where('e.arranger_id = ?', $request->getParameter('id'))
       ->andWhere('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
-      ->orderBy('e.startDate asc, e.startTime asc, e.title asc')
-      ->limit(20)
-      ->offset(0)
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->execute();
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $this->pager = new sfDoctrinePager('event', sfConfig::get('app_max_events_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 }

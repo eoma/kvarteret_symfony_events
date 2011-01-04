@@ -17,26 +17,38 @@ class locationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->locations = Doctrine_Core::getTable('location')
+    $q = Doctrine_Core::getTable('location')
       ->createQuery('a')
-      ->execute();
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $this->pager = new sfDoctrinePager('location', sfConfig::get('app_max_locations_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->location = Doctrine_Core::getTable('location')->find(array($request->getParameter('id')));
+    $this->location = Doctrine_Core::getTable('location')
+      ->createQuery('l')
+      ->where('l.id = ?', $request->getParameter('id'))
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
+      ->fetchOne();
+
     $this->forward404Unless($this->location);
-    $this->events = Doctrine_Core::getTable('event')
-      ->createQuery('e')
-      ->select('e.*, a.name, c.name')
-      ->leftJoin('e.arranger a')
-      ->leftJoin('e.categories c')
-      ->where('e.location_id = ?', $request->getParameter('id'))
+
+    $q = Doctrine_Core::getTable('event')
+      ->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+
+    $q->where('e.location_id = ?', $request->getParameter('id'))
       ->andWhere('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
-      ->orderBy('e.startDate asc, e.startTime asc, e.title asc')
-      ->limit(20)
-      ->offset(0)
-      ->execute();
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $this->pager = new sfDoctrinePager('event', sfConfig::get('app_max_events_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
     //$this->events = $this->location->getEvents();
   }
 }

@@ -25,7 +25,10 @@ class festivalActions extends sfActions
 
     $q->where('f.startDate >= ? OR f.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')));
 
-    $this->festivals = $q->execute();
+    $this->pager = new sfDoctrinePager('festival', sfConfig::get('app_max_festivals_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)
@@ -47,7 +50,11 @@ class festivalActions extends sfActions
     Doctrine_Core::getTable('event')->defaultQueryOptions($q);
 
     $q->where('e.festival_id = ?', $request->getParameter('id'));
-    $this->events = $q->execute();
+
+    $this->pager = new sfDoctrinePager('events', sfConfig::get('app_max_events_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
 
     $this->forward404Unless($this->festival);
   }

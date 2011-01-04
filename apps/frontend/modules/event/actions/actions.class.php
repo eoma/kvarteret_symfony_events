@@ -34,16 +34,17 @@ class eventActions extends sfActions
       $this->redirect('homepage_localized');
     }
 
-    $this->events = Doctrine_Core::getTable('event')
-      ->createQuery('e')
-      ->select('e.*, a.name, l.name, c.name, u.name')
-      ->leftJoin('e.arranger a')
-      ->leftJoin('e.recurringLocation l')
-      ->leftJoin('e.categories c')
-      ->where('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
-      ->orderBy('e.startDate asc, e.startTime asc, e.title asc, c.name asc')
-      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY)
-      ->execute();
+    $q = Doctrine_Core::getTable('event')
+      ->createQuery('e');
+    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+
+    $q->where('e.startDate >= ? OR e.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')))
+      ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+    $this->pager = new sfDoctrinePager('event', sfConfig::get('app_max_events_on_page'));
+    $this->pager->setQuery($q);
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)
