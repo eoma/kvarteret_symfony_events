@@ -8,14 +8,16 @@
     <?php include_stylesheets() ?>
   </head>
   <body>
-    <div id="menu">
-      <ul>
-        <li><?php echo link_to(__('Main'), '@homepage_localized') ?></li>
-        <li><?php echo link_to(__('Festivals'), 'festival/index') ?></li>
-        <li><?php echo link_to(__('Locations'), 'location/index') ?></li>
-        <li><?php echo link_to(__('Arrangers'), 'arranger/index') ?></li>
-        <li><?php echo link_to(__('Categories'), 'category/index') ?></li>
-      </ul>
+    <div id="header">
+      <div id="menu">
+        <ul>
+          <li><?php echo link_to(__('Main'), '@homepage_localized') ?></li>
+          <li><?php echo link_to(__('Festivals'), 'festival/index') ?></li>
+          <li><?php echo link_to(__('Locations'), 'location/index') ?></li>
+          <li><?php echo link_to(__('Arrangers'), 'arranger/index') ?></li>
+          <li><?php echo link_to(__('Categories'), 'category/index') ?></li>
+        </ul>
+      </div>
     </div>
     <div id="content">
       <?php echo $sf_content ?>
