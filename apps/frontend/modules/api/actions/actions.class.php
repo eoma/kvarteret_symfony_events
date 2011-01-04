@@ -309,18 +309,23 @@ class apiActions extends sfActions
     $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
 
     $eventIdsResult = $q->execute();
-    $eventIds = array();
-    foreach ($eventIdsResult as $e) {
-       $eventIds[] = $e['id'];
+
+    if (count($eventIdsResult) > 0) {
+      $eventIds = array();
+      foreach ($eventIdsResult as $e) {
+        $eventIds[] = $e['id'];
+      }
+
+      $q = Doctrine_Core::getTable('event')->createQuery('e');
+      Doctrine_Core::getTable('event')->defaultQueryOptions($q);
+
+      $q->whereIn('e.id', $eventIds);
+      $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+      $events = $q->execute();
+    } else {
+      $events = array();
     }
-
-    $q = Doctrine_Core::getTable('event')->createQuery('e');
-    Doctrine_Core::getTable('event')->defaultQueryOptions($q);
-
-    $q->whereIn('e.id', $eventIds);
-    $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
-
-    $events = $q->execute();
 
     $totalCount = $q->count();
     $count = count($events);
