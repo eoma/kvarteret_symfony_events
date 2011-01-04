@@ -1,6 +1,7 @@
 <?php
+use_helper('Date', 'I18N');
 if ($event['startDate'] == $event['endDate']) {
-  echo format_date($event['startDate']) . ' from ' . $event['startTime'] . ' to ' . $event['endTime'];
+  echo __('%1% from %2% to %3%', array('%1%' => format_date($event['startDate']), '%2%' => format_date($event['startDate'] . ' ' . $event['startTime'], 'H:m'), '%3%' => format_date($event['endDate'] . ' ' . $event['endTime'], 'H:m')));
 } else {
-  echo 'from ' . format_date($event['startDate']) . ' ' . $event['startTime'] . ' to ' . format_date($event['endDate']) . ' ' . $event['endTime'];
+  echo __('from %1% to %2%', array('%1%' => format_datetime($event['startDate']. ' ' . $event['startTime']), '%2%' => format_datetime($event['endDate'] . ' ' . $event['endTime'])));
 }
