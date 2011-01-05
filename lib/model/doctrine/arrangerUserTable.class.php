@@ -16,4 +16,40 @@ class arrangerUserTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('arrangerUser');
     }
+
+    /**
+     * Returns array of user's arrangers
+     */
+    public function getUsersArrangers($user_id) {
+      $q = $this->createQuery('au')
+        ->select('au.arranger_id')
+        ->where('au.user_id = ?', $user_id)
+        ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+      $arrangers = array();
+
+      foreach ($q->execute() as $r) {
+        $arrangers[] = $r['arranger_id'];
+      }
+
+      return $arrangers;
+    }
+
+    /**
+     * Returns array of users of arranger
+     */
+    public function getUsersOfArranger($arranger_id) {
+      $q = $this->createQuery('au')
+        ->select('au.user_id')
+        ->where('au.arranger_id = ?', $arranger_id)
+        ->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
+
+      $users = array();
+
+      foreach ($q->execute() as $r) {
+        $users[] = $r['user_id'];
+      }
+
+      return $users;
+    }
 }
