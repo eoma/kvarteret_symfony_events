@@ -12,7 +12,7 @@
         <tr>
           <td>
             <input type="checkbox" id="filter_showhide"/>
-            <label for="filter_showhide">Show/Hide filter</label>
+            <label for="filter_showhide">[?php echo __('Show/Hide filter') ?]</label>
           </td>
           <td class="textAlignRight">
             [?php echo link_to(__('Reset', array(), 'sf_admin'), '<?php echo $this->getUrlForAction('collection') ?>', array('action' => 'filter'), array('query_string' => '_reset', 'method' => 'post')) ?]
