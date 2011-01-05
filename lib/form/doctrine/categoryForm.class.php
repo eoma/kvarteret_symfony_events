@@ -14,7 +14,7 @@ class categoryForm extends BasecategoryForm
   {
 
     unset(
-      $this['created_at'], $this['updated_at']
+      $this['created_at'], $this['updated_at'], $this['events_list']
     );
 
   }
