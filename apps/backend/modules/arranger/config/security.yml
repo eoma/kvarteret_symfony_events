@@ -1,0 +1,7 @@
+# Security and access definitions for arranger module
+
+new:
+  credentials: [admin]
+
+delete:
+  credentials: [admin]

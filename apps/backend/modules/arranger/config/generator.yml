@@ -12,7 +12,11 @@ generator:
     actions_base_class:    sfActions
 
     config:
-      actions: ~
+      actions:
+        _new:
+          credentials: [admin]
+        _delete:
+          credentials: [admin]
       fields:  ~
       list:
         max_per_page: 10
