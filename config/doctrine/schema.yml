@@ -8,6 +8,10 @@ category:
       primary: true
       autoincrement: true
     name: string(255)
+  indexes:
+    name_idx:
+      fields: [name]
+      type: unique
 
 location:
   actAs: 
@@ -25,6 +29,9 @@ location:
     is_requiringReservation: { type: boolean, notnull: true, default: false }
     is_visible: { type: boolean, notnull: true, default: true } # If the location is visible for every
                                                                 # visitor not logged in.
+  indexes:
+    name_idx:
+      fields: [name]
 
 locationReservation: # This table contains reservations of locations
   actAs: [Timestampable]
@@ -49,6 +56,11 @@ locationReservation: # This table contains reservations of locations
     location: { local: location_id, foreign: id, onDelete: CASCADE, foreignAlias: reservations }
     arranger: { local: arranger_id, foreign: id, onDelete: CASCADE, foreignAlias: locationReservations }
     user: { class: sfGuardUser, local: user_id, foreign: id, foreignAlias: locationReservations, onDelete: CASCADE }
+  indexes:
+    title_idx:
+      fields: [title]
+    status_idx:
+      fields: [status]
 
 locationReservationRequirementBase: # Base table for all location reservation requirements, will not be created or used directly.
                                     # Sadly, child tables don't inherit relations
@@ -111,6 +123,9 @@ locationAccessory: # This table can be used to list what accomodations/items a l
     name: string(128)
   relations:
     location: {local: location_id, foreign: id, foreignAlias: accessories}
+  indexes:
+    name_idx:
+      fields: [name]
 
 locationUser:
   columns:
@@ -133,6 +148,10 @@ arranger:
       autoincrement: true
     name: string(255)
     description: string
+  indexes:
+    name_idx:
+      fields: [name]
+      type: unique
 
 arrangerUser:
   columns:
@@ -235,6 +254,9 @@ festival: # This table will hold all festivals
       class: arranger
       refClass: festivalArranger
       foreignAlias: festivals
+  indexes:
+    name_idx:
+      fields: [title]
 
 festivalArranger: # This table will hold relations between festivals and arrangers
   columns:
@@ -281,6 +303,8 @@ event: # This table will hold all events.
       fields: [location_id]
     arrangers:
       fields: [arranger_id]
+    title_idx:
+      fields: [title]
 
 eventCategory:
   columns:
