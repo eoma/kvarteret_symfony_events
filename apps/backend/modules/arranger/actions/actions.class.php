@@ -13,4 +13,11 @@ require_once dirname(__FILE__).'/../lib/arrangerGeneratorHelper.class.php';
  */
 class arrangerActions extends autoArrangerActions
 {
+
+  public function preExecute() {
+    parent::preExecute();
+
+    $this->configuration->setUser($this->getUser());
+  }
+
 }

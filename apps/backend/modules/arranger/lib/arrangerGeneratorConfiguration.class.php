@@ -10,4 +10,20 @@
  */
 class arrangerGeneratorConfiguration extends BaseArrangerGeneratorConfiguration
 {
+
+  protected $user;
+
+  public function setUser(sfGuardSecurityUser $user) {
+    //echo "executed!";
+    $this->user = $user;
+  }
+
+  public function getFilterFormOptions () {
+    return array('currentUser' => $this->user);
+  }
+
+  public function getFormOptions () {
+    return array('currentUser' => $this->user);
+  }
+
 }
