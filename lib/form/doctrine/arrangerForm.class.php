@@ -16,22 +16,28 @@ class arrangerForm extends BasearrangerForm
   public function configure()
   {
 
+    if (!($this->getOption('currentUser')) instanceof sfGuardSecurityUser) {
+      throw new InvalidArgumentException("You must pass a user object as an option to this form!");
+    }
+
     unset(
-      $this['created_at'], $this['updated_at']
+      $this['created_at'], $this['updated_at'], $this['festivals_list']
     );
 
 
-    if ( ! $this->isNew() ) {
-      // Don't embed non-existing relations
-      $this->embedRelation('users', 'arrangerUserForm', array( 'options' => array('hideArranger' => true)));
+
+    if ($this->getOption('currentUser')->hasGroup('admin')) {
+      if ( ! $this->isNew() ) {
+        // Don't embed non-existing relations
+        $this->embedRelation('users', 'arrangerUserForm', array( 'options' => array('hideArranger' => true)));
+      }
+
+      $arrangerUserForm = new arrangerUserForm(array(), array('hideArranger' => true));
+      $arrangerUserForm->getWidget('user_id')->setOption('add_empty', true );
+
+      $this->embedForm('newArrangerUser', $arrangerUserForm);
+
     }
-
-    $arrangerUserForm = new arrangerUserForm(array(), array('hideArranger' => true));
-    $arrangerUserForm->getWidget('user_id')->setOption('add_empty', true );
-
-    $this->embedForm('newArrangerUser', $arrangerUserForm);
-
-
   }
 
   // Taken from http://prendreuncafe.com/blog/post/2009/11/29/Embedding-Relations-in-Forms-with-Symfony-1.3-and-Doctrine
