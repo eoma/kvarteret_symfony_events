@@ -10,11 +10,6 @@
   <body>
     <div id="container">
       <div id="header">
-        <h1>
-          <a href="<?php echo url_for('homepage') ?>">
-            <img src="/images/logo.jpg" alt="Jobeet Job Board" />
-          </a>
-        </h1>
       </div>
       <?php if ($sf_user->isAuthenticated()): ?>
       <!-- only show the meny when authenticated -->
