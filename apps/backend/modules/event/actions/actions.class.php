@@ -20,6 +20,27 @@ class eventActions extends autoEventActions
     $this->configuration->setUser($this->getUser());
   }
 
+  public function getCredential()
+  {
+    $action = $this->getActionName();
+    $user = $this->getUser();
+
+    if (!$user->hasCredential('admin') && in_array($action, array('edit', 'delete', 'update', 'batchDelete')))
+    {
+      $this->event = $this->getRoute()->getObject();
+      $usersArrangers = Doctrine_Core::getTable('arrangerUser')->getUsersArrangers($user->getGuardUser()->getId());
+
+      if (in_array($this->event->getArrangerId(), $usersArrangers)) {
+        $this->getUser()->addCredential('owner');
+      } else {
+        $this->getUser()->removeCredential('owner');
+      }
+    }
+ 
+    // the hijack is over, let the normal flow continue:
+    return parent::getCredential();
+  }
+
   public function executeShow(sfWebRequest $request) {
     $this->event = $this->getRoute()->getObject();
   }
