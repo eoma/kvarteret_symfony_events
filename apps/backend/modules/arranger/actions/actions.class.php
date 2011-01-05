@@ -20,4 +20,31 @@ class arrangerActions extends autoArrangerActions
     $this->configuration->setUser($this->getUser());
   }
 
+  protected function buildQuery()
+  {
+    $query = parent::buildQuery();
+    // do what ever you like with the query like
+
+    if ( $this->getUser()->isAuthenticated() && ! $this->getUser()->hasGroup('admin') ) {
+      $arrangerUsersRowBased = Doctrine_Core::getTable('arrangerUser')
+                             ->createQuery('au')
+                             ->select('au.arranger_id')
+                             ->where('au.user_id = ?', $this->getUser()->getGuardUser()->getId())
+                             ->fetchArray();
+
+      $arrangerUsersColumnBased = array();
+      foreach ($arrangerUsersRowBased as $v) {
+        $arrangerUsersColumnBased[] = $v['arranger_id'];
+      }
+
+      if ( count($arrangerUsersColumnBased) > 0 ) {
+        $query->andWhereIn('id', $arrangerUsersColumnBased);
+      } else {
+        // No events can be created with id set to null
+        $query->andWhere('id is null');
+      }
+    }
+    return $query;
+  }
+
 }
