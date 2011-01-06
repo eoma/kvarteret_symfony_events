@@ -20,6 +20,27 @@ class arrangerActions extends autoArrangerActions
     $this->configuration->setUser($this->getUser());
   }
 
+  public function getCredential()
+  {
+    $action = $this->getActionName();
+    $user = $this->getUser();
+
+    if (!$user->hasCredential('admin') && in_array($action, array('edit', 'update')))
+    {
+      $this->arranger = $this->getRoute()->getObject();
+      $usersArrangers = Doctrine_Core::getTable('arrangerUser')->getUsersArrangers($user->getGuardUser()->getId());
+
+      if (in_array($this->arranger->getId(), $usersArrangers)) {
+        $this->getUser()->addCredential('owner');
+      } else {
+        $this->getUser()->removeCredential('owner');
+      }
+    }
+ 
+    // the hijack is over, let the normal flow continue:
+    return parent::getCredential();
+  }
+
   protected function buildQuery()
   {
     $query = parent::buildQuery();
