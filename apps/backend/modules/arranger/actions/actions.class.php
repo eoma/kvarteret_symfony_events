@@ -28,7 +28,7 @@ class arrangerActions extends autoArrangerActions
     if (!$user->hasCredential('admin') && in_array($action, array('edit', 'update')))
     {
       $this->arranger = $this->getRoute()->getObject();
-      $usersArrangers = $user->getArrangerIds());
+      $usersArrangers = $user->getArrangerIds();
 
       if (in_array($this->arranger->getId(), $usersArrangers)) {
         $this->getUser()->addCredential('owner');
