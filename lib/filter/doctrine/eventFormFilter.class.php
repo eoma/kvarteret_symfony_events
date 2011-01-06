@@ -16,16 +16,32 @@ class eventFormFilter extends BaseeventFormFilter
       throw new InvalidArgumentException("You must pass a user object as an option to this form!");
     }
 
+    $arrangerQuery = Doctrine_Core::getTable('arranger')
+      ->createQuery('a')
+      ->select('a.*');
+    Doctrine_Core::getTable('arranger')->defaultOrderBy($arrangerQuery);
+
+    $festivalQuery = Doctrine_Core::getTable('festival')
+      ->createQuery('f')
+      ->select('f.*')
+      ->where('f.startDate >= ? OR f.endDate >= ?', array(date('Y-m-d'), date('Y-m-d')));
+    Doctrine_Core::getTable('festival')->defaultOrderBy($festivalQuery);
+
     if ( ! $this->getOption('currentUser')->hasGroup('admin') ) {
       // Widget arranger_is of type sfWidgetFormDoctrineChoice, which supports queries.
       // If the user is not an admin, we make sure to only use
       // the arrangers the user is limited to.
-      $user = $this->getOption('currentUser')->getGuardUser();
+      $user = $this->getOption('currentUser');
 
-      $this->widgetSchema['arranger_id']->setOption('query',
-        Doctrine_Core::getTable('arranger')->createQuery('a')->select('a.*')->leftJoin('a.users u')->where('u.user_id = ?', $user->getId())
-      );
+      $arrangerQuery->where('a.id = ?', $user->getArrangerIds());
+
+      $festivalQuery->leftJoin('f.arrangers a')
+        ->whereIn('a.id', $user->getArrangerIds());
+
     }
+
+    $this->widgetSchema['arranger_id']->setOption('query', $arrangerQuery);
+    $this->widgetSchema['festival_id']->setOption('query', $festivalQuery);
 
   }
 }
