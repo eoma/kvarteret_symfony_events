@@ -16,4 +16,30 @@ class arrangerTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('arranger');
     }
+
+    public function defaultJoins(Doctrine_Query $q)
+    {
+        return $q;
+    }
+
+    public function defaultSelect(Doctrine_Query $q) {
+        //This function assumes you've used eventTable::defaultJoins
+        return $q;
+    }
+
+    public function defaultOrderBy(Doctrine_Query $q)
+    {
+        $rootAlias = $q->getRootAlias();
+
+        $q->orderBy($rootAlias . '.name asc');
+
+        return $q;
+    }
+
+    public function defaultQueryOptions(Doctrine_Query $q)
+    {
+        $this->defaultJoins($q);
+        $this->defaultSelect($q);
+        $this->defaultOrderBy($q);
+    }
 }
