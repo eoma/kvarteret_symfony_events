@@ -3,6 +3,8 @@
 class myUser extends sfGuardSecurityUser
 {
 
+  private $arrangerIds = null;
+
   // Taken from http://halestock.wordpress.com/2010/02/08/symfony-understanding-permissionscredentials-with-sfdoctrineguardplugin/#comment-26
 
   public function hasCredential($credentials, $useAnd = true)
@@ -42,5 +44,18 @@ class myUser extends sfGuardSecurityUser
     }
 
     return $test;
+  }
+
+  /**
+   * Returns array of currently assigned arrangers for a user
+   * Most useful if used several different places in a request
+   */
+  public function getArrangerIds () {
+    if (is_null($this->arrangerIds)) {
+      $this->arrangerIds = Doctrine_Core::getTable('arrangerUser')
+                           ->getUsersArrangers($this->getGuardUser()->getId());
+    }
+
+    return $this->arrangerIds;
   }
 }
