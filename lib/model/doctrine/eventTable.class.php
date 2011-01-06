@@ -48,10 +48,36 @@ class eventTable extends Doctrine_Table
         return $q;
     }
 
+    public function defaultRequirements (Doctrine_Query $q) {
+        $rootAlias = $q->getRootAlias();
+
+        $q->where($rootAlias . '.startDate >= ? OR ' . $rootAlias . '.endDate >= ?', 
+                  array(date('Y-m-d'), date('Y-m-d')));
+
+        return $q;
+    }
+
+    public function defaultJoinsAndRequirements (Doctrine_Query $q) {
+        $q = $this->defaultJoins($q);
+        $q = $this->defaultRequirements($q);
+
+        return $q;
+    }
+
     public function defaultQueryOptions(Doctrine_Query $q)
     {
-        $this->defaultJoins($q);
-        $this->defaultSelect($q);
-        $this->defaultOrderBy($q);
+        $q = $this->defaultJoins($q);
+        $q = $this->defaultSelect($q);
+        $q = $this->defaultOrderBy($q);
+
+        return $q;
+    }
+
+    public function defaultQueryOptionsAndRequirements(Doctrine_Query $q)
+    {
+        $q = $this->defaultQueryOptions($q);
+        $q = $this->defaultRequirements($q);
+
+        return $q;
     }
 }
