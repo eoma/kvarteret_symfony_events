@@ -65,19 +65,10 @@ class eventActions extends autoEventActions
     // do what ever you like with the query like
 
     if ( $this->getUser()->isAuthenticated() && ! $this->getUser()->hasGroup('admin') ) {
-      $arrangerUsersRowBased = Doctrine_Core::getTable('arrangerUser')
-                             ->createQuery('au')
-                             ->select('au.arranger_id')
-                             ->where('au.user_id = ?', $this->getUser()->getGuardUser()->getId())
-                              ->fetchArray();
+      $arrangerUsers = $this->getUser()->getArrangerIds();
 
-      $arrangerUsersColumnBased = array();
-      foreach ($arrangerUsersRowBased as $v) {
-        $arrangerUsersColumnBased[] = $v['arranger_id'];
-      }
-
-      if ( count($arrangerUsersColumnBased) > 0 ) {
-        $query->andWhereIn('arranger_id', $arrangerUsersColumnBased);
+      if ( count($arrangerUsers) > 0 ) {
+        $query->andWhereIn('arranger_id', $arrangerUsers);
       } else {
         // No events can be created with arranger_id set to null
         $query->andWhere('arranger_id is null');
