@@ -254,12 +254,13 @@ class apiActions extends sfActions
 
   public function executeFilteredEvents (sfWebRequest $request) {
     // This method will accept the following parameters:
-    // location_id, arranger_id, category_id, startDate, endDate,
-    // limit, offset
+    // location_id, arranger_id, category_id, festival_id,
+    // startDate, endDate, limit, offset
 
     $q = Doctrine_Core::getTable('event')
       ->createQuery('e');
     Doctrine_Core::getTable('event')->defaultJoins($q);
+    Doctrine_Core::getTable('event')->defaultOrderBy($q);
     $q->select('e.id');
 
     if ($request->hasParameter('location_id')) {
@@ -309,6 +310,7 @@ class apiActions extends sfActions
     $q->setHydrationMode(Doctrine_Core::HYDRATE_ARRAY);
 
     $eventIdsResult = $q->execute();
+    $totalCount = $q->count();
 
     if (count($eventIdsResult) > 0) {
       $eventIds = array();
@@ -327,7 +329,6 @@ class apiActions extends sfActions
       $events = array();
     }
 
-    $totalCount = $q->count();
     $count = count($events);
 
     $data = array(
