@@ -249,7 +249,19 @@ class apiActions extends sfActions
       'data' => $events,
     );
 
-    return $this->returnJson($data);
+    if ($request->getRequestFormat() == 'json') {
+      return $this->returnJson($data);
+    } else {
+      $this->events = $events;
+      $this->latestUpdate = 0;
+
+      foreach ($events as $e) {
+        $t = strtotime($e['updated_at']);
+        if ($t > $this->latestUpdate) {
+          $this->latestUpdate = $t;
+        }
+      }
+    }
   }
 
   public function executeFilteredEvents (sfWebRequest $request) {
@@ -263,31 +275,40 @@ class apiActions extends sfActions
     Doctrine_Core::getTable('event')->defaultOrderBy($q);
     $q->select('e.id');
 
+    // extraArguments variable is for templates wishing to use current url.
+    // Probably wrong way to do it.
+    $this->extraArguments = '';
+
     if ($request->hasParameter('location_id')) {
+      $this->extraArguments .= '&location_id=' . $request->getParameter('location_id');
       $location_id = explode(',', $request->getParameter('location_id'));
       $location_id = array_map(create_function('$value', 'return (int)$value;'), $location_id);
       $q->andWhereIn('e.location_id', $location_id);
     }
     
     if ($request->hasParameter('arranger_id')) {
+      $this->extraArguments .= '&arranger_id=' . $request->getParameter('arranger_id');
       $arranger_id = explode(',', $request->getParameter('arranger_id'));
       $arranger_id = array_map(create_function('$value', 'return (int)$value;'), $arranger_id);
       $q->andWhereIn('e.arranger_id', $arranger_id);
     }
 
     if ($request->hasParameter('category_id')) {
+      $this->extraArguments .= '&category_id=' . $request->getParameter('category_id');
       $category_id = explode(',', $request->getParameter('category_id'));
       $category_id = array_map(create_function('$value', 'return (int)$value;'), $category_id);
       $q->andWhereIn('c.id', $category_id);
     }
 
     if ($request->hasParameter('festival_id')) {
+      $this->extraArguments .= 'festival_id=' . $request->getParameter('festival_id');
       $festival_id = explode(',', $request->getParameter('festival_id'));
       $festival_id = array_map(create_function('$value', 'return (int)$value;'), $festival_id);
       $q->andWhereIn('e.festival_id', $festival_id);
     }
 
     if ($request->hasParameter('startDate')) {
+      $this->extraArguments .= '&startDate=' . $request->getParameter('startDate');
       $startDate = $request->getParameter('startDate');
       $q->andWhere('e.startDate >= ? OR e.endDate >= ?', array($startDate, $startDate));
     } else {
@@ -295,6 +316,7 @@ class apiActions extends sfActions
     }
 
     if ($request->hasParameter('endDate')) {
+      $this->extraArguments .= '&endDate=' . $request->getParameter('endDate');
       $endDate = $request->getParameter('endDate');
       $q->andWhere('e.startDate <= ? OR e.endDate <= ?', array($endDate, $endDate));
     }
@@ -339,7 +361,19 @@ class apiActions extends sfActions
       'data' => $events,
     );
 
-    return $this->returnJson($data);
+    if ($request->getRequestFormat() == 'json') {
+      return $this->returnJson($data);
+    } else {
+      $this->events = $events;
+      $this->latestUpdate = 0;
+
+      foreach ($events as $e) {
+        $t = strtotime($e['updated_at']);
+        if ($t > $this->latestUpdate) {
+          $this->latestUpdate = $t;
+        }
+      }
+    }
   }
 
   public function returnJson($data) {
