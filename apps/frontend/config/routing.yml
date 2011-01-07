@@ -14,15 +14,15 @@ homepage_localized:
 
 api_upcomingEvents:
   url: /api/:sf_format/upcomingEvents/*
-  param: { module: api , action: upcomingEvents }
+  param: { module: api , action: upcomingEvents, sf_format: json }
   requirements:
-    sf_format: (?:json|xml)
+    sf_format: (?:json|xml|atom)
 
 api_filteredEvents:
   url: /api/:sf_format/filteredEvents/*
-  param: { module: api, action: filteredEvents }
+  param: { module: api, action: filteredEvents, sf_format: json }
   requirements:
-    sf_format: (?:json|xml)
+    sf_format: (?:json|xml|atom)
 
 api:
   url: /api/:sf_format/:action/:subaction/*
