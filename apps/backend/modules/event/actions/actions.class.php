@@ -28,9 +28,8 @@ class eventActions extends autoEventActions
     if (!$user->hasCredential('admin') && in_array($action, array('edit', 'delete', 'update', 'batchDelete')))
     {
       $this->event = $this->getRoute()->getObject();
-      $usersArrangers = Doctrine_Core::getTable('arrangerUser')->getUsersArrangers($user->getGuardUser()->getId());
 
-      if (in_array($this->event->getArrangerId(), $usersArrangers)) {
+      if (in_array($this->event->getArrangerId(), $user->getArrangerIds())) {
         $this->getUser()->addCredential('owner');
       } else {
         $this->getUser()->removeCredential('owner');
