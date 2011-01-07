@@ -33,7 +33,7 @@ class eventFormFilter extends BaseeventFormFilter
       // the arrangers the user is limited to.
       $user = $this->getOption('currentUser');
 
-      $arrangerQuery->where('a.id = ?', $user->getArrangerIds());
+      $arrangerQuery->whereIn('a.id', $user->getArrangerIds());
 
       $festivalQuery->leftJoin('f.arrangers a')
         ->whereIn('a.id', $user->getArrangerIds());
