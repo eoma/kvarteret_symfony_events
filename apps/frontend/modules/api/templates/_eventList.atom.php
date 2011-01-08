@@ -15,6 +15,13 @@
             <strong><?php echo __('Arranger') ?>:</strong> <?php echo $e['arranger']['name'] ?><br />
             <strong><?php echo __('Category') ?>:</strong> <ul><?php foreach($e['categories'] as $c) { echo '<li>' . $c['name'] . '</li>'; } ?></ul>
           </p>
+
+	  <?php if ($e['festival_id'] > 0): ?>
+          <p>
+	    <?php echo __('Part of festival') . "\n" ?>
+	    <?php echo link_to($e['festival']['title'] . ' ' . format_date($e['festival']['startDate']), 'festival/show?id=' . $e['festival_id']) . "\n" ?>
+	  </p>
+	  <?php endif ?>
  
           <p>
             <?php echo $e->getRaw('leadParagraph') ?>
