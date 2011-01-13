@@ -1,59 +1,5 @@
-festival:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                festival
-    module:               festival
-    prefix_path:          /festival
-    column:               id
-    with_wildcard_routes: true
-
-location_reservation:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                locationReservation
-    module:               location_reservation
-    prefix_path:          /location_reservation
-    column:               id
-    with_wildcard_routes: true
-
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
-
-location:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                location
-    module:               location
-    prefix_path:          /location
-    column:               id
-    with_wildcard_routes: true
-
-event:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                event
-    module:               event
-    prefix_path:          /event
-    column:               id
-    with_wildcard_routes: true
-
-arranger:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                arranger
-    module:               arranger
-    prefix_path:          /arranger
-    column:               id
-    with_wildcard_routes: true
-
-category:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                category
-    module:               category
-    prefix_path:          /category
-    column:               id
-    with_wildcard_routes: true
 
 # default rules
 homepage:

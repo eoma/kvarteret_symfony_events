@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [main.css]
 
-  javascripts:    [https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js, adminTools.js]
+  javascripts:    [https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js]
 
   has_layout:     true
   layout:         layout

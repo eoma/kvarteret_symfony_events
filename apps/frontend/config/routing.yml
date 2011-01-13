@@ -6,30 +6,6 @@ homepage:
   url:   /
   param: { module: event, action: index }
 
-homepage_localized:
-  url:   /:sf_culture/
-  param: { module: event, action: index }
-  requirements:
-    sf_culture: (?:en|no)
-
-api_upcomingEvents:
-  url: /api/:sf_format/upcomingEvents/*
-  param: { module: api , action: upcomingEvents, sf_format: json }
-  requirements:
-    sf_format: (?:json|xml|atom)
-
-api_filteredEvents:
-  url: /api/:sf_format/filteredEvents/*
-  param: { module: api, action: filteredEvents, sf_format: json }
-  requirements:
-    sf_format: (?:json|xml|atom)
-
-api:
-  url: /api/:sf_format/:action/:subaction/*
-  param: { module: api }
-  requirements:
-    sf_format: (?:json|xml)
-
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
