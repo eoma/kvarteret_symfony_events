@@ -16,5 +16,6 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrineNestedSetPlugin');
     $this->enablePlugins('sfCKEditorPlugin');
     $this->enablePlugins('sfDoctrineGuardPlugin');
+    $this->enablePlugins('dakEventsPlugin');
   }
 }
