@@ -7,3 +7,6 @@
 [submodule "plugins/sfDoctrineGuardPlugin"]
 	path = plugins/sfDoctrineGuardPlugin
 	url = https://github.com/nerium/sfDoctrineGuardPlugin.git
+[submodule "plugins/dakEventsPlugin"]
+	path = plugins/dakEventsPlugin
+	url = git://github.com/eoma/dakEventsPlugin.git
