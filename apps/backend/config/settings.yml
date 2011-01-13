@@ -35,7 +35,18 @@ all:
     use_database:           true
 
     # We enable the use of sfDoctrineGuardPlugin modules.
-    enabled_modules: [default, sfGuardAuth, sfGuardUser, sfGuardPermission, sfGuardGroup]
+    enabled_modules:
+      - default
+      - sfGuardAuth
+      - sfGuardUser
+      - sfGuardPermission
+      - sfGuardGroup
+      - dakEventAdmin
+      - dakFestivalAdmin
+      - dakArrangerAdmin
+      - dakCategoryAdmin
+      - dakLocationAdmin
+      - dakLocationReservationAdmin
   .actions:
     # Default actions when logging in
     login_module: sfGuardAuth
