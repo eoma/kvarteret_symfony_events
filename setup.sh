@@ -85,6 +85,10 @@ php symfony project:permissions
 chmod -R a+rws cache
 chmod -R a+rws log
 
+# Copy dakEventsPlugin fixtures to this projects fixtures
+mkdir -p data/fixtures
+cp plugins/dakEventsPlugin/data/fixtures/* data/fixtures/
+
 # We'll confgiure the database if the configuration
 # does not exist
 
