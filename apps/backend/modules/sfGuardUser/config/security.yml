@@ -1,3 +1,23 @@
-all:
-  is_secure: true
+index:
   credentials: admin
+
+list:
+  credentials: admin
+
+new:
+  credentials: admin
+
+create:
+  credentials: admin
+
+delete:
+  credentials: admin
+
+batchDelete:
+  credentials: admin
+
+edit:
+  credentials: [[admin, owner]]
+
+update:
+  credentials: [[admin, owner]]
