@@ -16,6 +16,7 @@
           <li><?php echo link_to(__('Locations'), 'location/index') ?></li>
           <li><?php echo link_to(__('Arrangers'), 'arranger/index') ?></li>
           <li><?php echo link_to(__('Categories'), 'category/index') ?></li>
+          <li><a href="<?php echo public_path('', true) ?>backend.php">Backend</a></li>
         </ul>
       </div>
     </div>
