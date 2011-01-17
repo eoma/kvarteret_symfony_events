@@ -97,3 +97,6 @@ if [ ! -e config/databases.yml ]; then
 fi;
 
 php symfony doctrine:build --all-classes --sql
+
+# Make sure our plugins' web resources are accessible
+php symfony plugin:publish-assets
