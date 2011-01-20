@@ -47,6 +47,7 @@ all:
       - dakCategoryAdmin
       - dakLocationAdmin
       - dakLocationReservationAdmin
+      - dakPictureAdmin
   .actions:
     # Default actions when logging in
     login_module: sfGuardAuth
