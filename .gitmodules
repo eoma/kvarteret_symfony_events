@@ -10,3 +10,9 @@
 [submodule "plugins/dakEventsPlugin"]
 	path = plugins/dakEventsPlugin
 	url = git://github.com/eoma/dakEventsPlugin.git
+[submodule "plugins/sfImageTransformPlugin"]
+	path = plugins/sfImageTransformPlugin
+	url = git://github.com/diem-project/sfImageTransformPlugin.git
+[submodule "plugins/sfImageTransformExtraPlugin"]
+	path = plugins/sfImageTransformExtraPlugin
+	url = git://github.com/caefer/sfImageTransformExtraPlugin.git
