@@ -12,10 +12,11 @@
       <div id="menu">
         <ul>
           <li><?php echo link_to(__('Main'), '@homepage_localized') ?></li>
-          <li><?php echo link_to(__('Festivals'), 'festival/index') ?></li>
-          <li><?php echo link_to(__('Locations'), 'location/index') ?></li>
-          <li><?php echo link_to(__('Arrangers'), 'arranger/index') ?></li>
-          <li><?php echo link_to(__('Categories'), 'category/index') ?></li>
+          <li><?php echo link_to(__('Festivals'), '@dak_festival_index') ?></li>
+          <li><?php echo link_to(__('Locations'), '@dak_location_index') ?></li>
+          <li><?php echo link_to(__('Arrangers'), '@dak_arranger_index') ?></li>
+          <li><?php echo link_to(__('Categories'), '@dak_category_index') ?></li>
+          <li><?php echo link_to(__('API documentation'), '@dak_api') ?></li>
           <li><a href="<?php echo public_path('', true) ?>backend.php">Backend</a></li>
         </ul>
       </div>
