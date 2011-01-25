@@ -85,6 +85,14 @@ php symfony project:permissions
 chmod -R a+rws cache
 chmod -R a+rws log
 
+# Upload folter
+mkdir -p web/uploads
+chown a+rws web/uploads
+
+# Thumbnail folder
+mkdir -p web/thumbs
+chown a+rws web/thumbs
+
 # Copy dakEventsPlugin fixtures to this projects fixtures
 mkdir -p data/fixtures
 cp plugins/dakEventsPlugin/data/fixtures/* data/fixtures/
