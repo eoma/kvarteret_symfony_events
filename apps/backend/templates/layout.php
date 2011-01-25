@@ -11,10 +11,10 @@
     <div id="container">
       <div id="header">
       </div>
-      <?php if ($sf_user->isAuthenticated()): ?>
-      <!-- only show the meny when authenticated -->
       <div id="menu">
         <ul>
+          <?php if ($sf_user->isAuthenticated()): ?>
+          <!-- only show the meny when authenticated -->
           <li>
             <?php echo link_to('Events', 'dak_event_admin') ?>
           </li>
@@ -48,9 +48,12 @@
           <li>
             <?php echo link_to('Logout', 'sf_guard_signout') ?>
           </li>
+          <?php endif ?> 
+	  <li>
+            <a href="<?php echo public_path('', true) ?>">Frontend</a>
+	  </li>
         </ul>
       </div>
-      <?php endif ?> 
 
       <div id="content">
         <?php echo $sf_content ?>
