@@ -42,6 +42,7 @@ all:
       - dakArranger
       - dakLocation
       - dakCategory
+      - sfImageTransformator
 
     # Default charset
     charset: utf-8

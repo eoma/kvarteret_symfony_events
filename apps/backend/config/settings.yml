@@ -41,6 +41,7 @@ all:
       - sfGuardUser
       - sfGuardPermission
       - sfGuardGroup
+      - sfImageTransformator
       - dakEventAdmin
       - dakFestivalAdmin
       - dakArrangerAdmin
