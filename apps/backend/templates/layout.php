@@ -32,6 +32,10 @@
             <li>
               <?php echo link_to('Location reservations', 'dak_location_reservation_admin') ?>
             </li>
+            <li>
+              <?php echo link_to('Pictures', 'dak_picture_admin') ?>
+            </li>
+            <li>
             <?php if ($sf_user->isSuperAdmin()): ?>
             <!-- If the user is a super admin we show the group and permission pages -->
             <li>
