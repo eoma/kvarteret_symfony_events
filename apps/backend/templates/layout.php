@@ -6,6 +6,7 @@
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_stylesheet('admin.css') ?>
     <?php include_stylesheets() ?>
+    <?php include_javascripts() ?>
   </head>
   <body>
     <div id="container">
@@ -68,6 +69,5 @@
         <img src="/images/symfony.gif" alt="symfony framework" /></a>
       </div>
     </div>
-    <?php include_javascripts() ?>
   </body>
 </html>
