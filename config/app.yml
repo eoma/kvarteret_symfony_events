@@ -4,3 +4,7 @@ all:
       auto_detect:  true
       library:    gd_mime_type #  gd_mime_type (GD), Fileinfo (PECL), MIME_Type (PEAR)
     font_dir:     %SF_PLUGINS_DIR%/sfImageTransformExtraPlugin/data/example-resources/fonts
+
+  applicationLinks: # These urls can be environment aware too
+    frontend: "http://localhost/" # Change this to whatever your frontend address is
+    backend: "http://localhost/backend.php" # Change this to whatever your backend address is
