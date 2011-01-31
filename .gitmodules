@@ -16,3 +16,6 @@
 [submodule "plugins/sfImageTransformExtraPlugin"]
 	path = plugins/sfImageTransformExtraPlugin
 	url = git://github.com/caefer/sfImageTransformExtraPlugin.git
+[submodule "plugins/sfDoctrineActAsTaggablePlugin"]
+	path = plugins/sfDoctrineActAsTaggablePlugin
+	url = git://github.com/annismckenzie/sfDoctrineActAsTaggablePlugin.git
