@@ -18,6 +18,7 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrineGuardPlugin');
     $this->enablePlugins('sfImageTransformPlugin');
     $this->enablePlugins('sfImageTransformExtraPlugin');
+    $this->enablePlugins('sfDoctrineActAsTaggablePlugin');
     $this->enablePlugins('dakEventsPlugin');
   }
 }
