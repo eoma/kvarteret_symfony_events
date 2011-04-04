@@ -95,7 +95,11 @@ chown a+rws web/thumbs
 
 # Copy dakEventsPlugin fixtures to this projects fixtures
 mkdir -p data/fixtures
-cp plugins/dakEventsPlugin/data/fixtures/* data/fixtures/
+cd plugins/dakEventsPlugin/data/fixtures
+for file in *.sample; do
+  cp "$file" "${root_dir}/data/fixtures/${file/.sample}";
+done;
+cd $root_dir;
 
 # We'll confgiure the database if the configuration
 # does not exist
