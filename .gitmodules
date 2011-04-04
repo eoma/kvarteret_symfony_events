@@ -6,7 +6,7 @@
 	url = git://github.com/weaverryan/sfCKEditorPlugin.git
 [submodule "plugins/sfDoctrineGuardPlugin"]
 	path = plugins/sfDoctrineGuardPlugin
-	url = https://github.com/nerium/sfDoctrineGuardPlugin.git
+	url = git://github.com/davidsblom/sfDoctrineGuardPlugin.git
 [submodule "plugins/dakEventsPlugin"]
 	path = plugins/dakEventsPlugin
 	url = git://github.com/eoma/dakEventsPlugin.git
