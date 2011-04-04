@@ -76,6 +76,21 @@ rm htmlpurifier-4.3.0.tar.gz
 
 cd $root_dir
 
+# Download and setup FullCalendar
+cd web
+mkdir -p js/fullcalendar
+mkdir -p css/fullcalendar
+
+wget http://arshaw.com/fullcalendar/downloads/fullcalendar-1.5.zip
+unzip fullcalendar-1.5.zip
+mv fullcalendar-1.5/fullcalendar/*.js js/fullcalendar
+mv fullcalendar-1.5/fullcalendar/*.css css/fullcalendar
+
+rm -r fullcalendar-1.5
+rm fullcalendar-1.5.zip
+
+cd $root_dir;
+
 ### END SETUP OF PLUGINS ###
 
 php symfony project:permissions
