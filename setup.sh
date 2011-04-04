@@ -69,10 +69,10 @@ if [ -d htmlpurifier ]; then
   rm -rf htmlpurifier
 fi;
 
-wget http://htmlpurifier.org/releases/htmlpurifier-4.2.0.tar.gz
-tar -xzf htmlpurifier-4.2.0.tar.gz
-mv htmlpurifier-4.2.0 htmlpurifier
-rm htmlpurifier-4.2.0.tar.gz
+wget http://htmlpurifier.org/releases/htmlpurifier-4.3.0.tar.gz
+tar -xzf htmlpurifier-4.3.0.tar.gz
+mv htmlpurifier-4.3.0 htmlpurifier
+rm htmlpurifier-4.3.0.tar.gz
 
 cd $root_dir
 
