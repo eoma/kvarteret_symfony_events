@@ -3,6 +3,7 @@
 root_dir=$PWD;
 
 # This script will setup the required steps to using this application
+git submodule sync
 git submodule init
 git submodule update
 
