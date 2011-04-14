@@ -20,6 +20,10 @@ html {
   background-color: #48474f;
 }
 
+a {
+  color: #c30;
+}
+
 ul {
   margin: 1em;
 }
