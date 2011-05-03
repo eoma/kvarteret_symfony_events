@@ -62,6 +62,20 @@ rm htmlpurifier-4.3.0.tar.gz
 
 cd $root_dir
 
+# Download and setup iCalcreator by KigKonsult
+
+cd lib/vendor;
+
+if [ -d iCalcreator ]; then
+  rm -rf iCalcreator
+fi;
+
+wget -O iCalcreator.zip http://www.kigkonsult.se/downloads/dl.php?f=iCalcreator-2.8
+mkdir iCalcreator
+unzip iCalcreator.zip -d iCalcreator
+
+cd $root_dir;
+
 # Download and setup FullCalendar
 cd web
 mkdir -p js/fullcalendar
