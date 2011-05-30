@@ -97,7 +97,7 @@ cd $root_dir;
 mkdir -p data/fixtures
 cd plugins/dakEventsPlugin/data/fixtures
 for file in *.sample; do
-  cp "$file" "${root_dir}/data/fixtures/${file/.sample}";
+  cp "$file" "${root_dir}/data/fixtures/${file%.sample}";
 done;
 cd $root_dir;
 
