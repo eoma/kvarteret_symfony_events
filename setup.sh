@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Setup plugins and stuff
-source ./update.sh
+. ./update.sh
 
 # We make sure we can delete the contents of the cache by setting the
 # sgid and suid bit
