@@ -70,7 +70,7 @@ if [ -d iCalcreator ]; then
   rm -rf iCalcreator
 fi;
 
-wget -O iCalcreator.zip http://www.kigkonsult.se/downloads/dl.php?f=iCalcreator-2.8
+wget -O iCalcreator.zip http://www.kigkonsult.se/downloads/dl.php?f=iCalcreator-2.10.5
 mkdir iCalcreator
 unzip iCalcreator.zip -d iCalcreator
 
