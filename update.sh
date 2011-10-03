@@ -42,9 +42,9 @@ if [ -d ckeditor ]; then
   rm -r ckeditor
 fi;
 
-wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.4.2/ckeditor_3.4.2.tar.gz
-tar -xzf ckeditor_3.4.2.tar.gz
-rm ckeditor_3.4.2.tar.gz
+wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%203.6.2/ckeditor_3.6.2.tar.gz
+tar -xzf ckeditor_3.6.2.tar.gz
+rm ckeditor_3.6.2.tar.gz
 
 cd $root_dir;
 
