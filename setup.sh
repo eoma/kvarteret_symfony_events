@@ -20,7 +20,9 @@ chmod a+rws web/thumbs
 # does not exist
 
 if [ ! -e config/databases.yml ]; then
-  php symfony configure:database "sqlite:db.db";
+  php symfony configure:database "sqlite:%SF_DATA_DIR%/db.db";
+  touch data/db.db
+  chmod a+rwx data/db.db
 fi;
 
 # Generate database classes
