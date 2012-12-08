@@ -1,10 +1,20 @@
+<?php
+
+$frontendRoute = public_path('', true);
+if (sfConfig::get('app_applicationLinks_frontend')) {
+	$frontendRoute = sfConfig::get('app_applicationLinks_frontend');
+}
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <title>Event Admin Interface</title>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <?php use_stylesheet('admin.css') ?>
+    <?php use_stylesheet('ui-lightness/jquery-ui.css') ?>
+    <?php use_stylesheet('main.css', 'last') ?>
+    <?php use_stylesheet('admin.css', 'last') ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
@@ -29,6 +39,9 @@
         </li>
         <li>
           <?php echo link_to('Locations', '@dak_location_admin') ?>
+        </li>
+        <li>
+          <?php echo link_to('Location reservations', '@dak_location_reservation_admin') ?>
         </li>
         <li>
           <?php echo link_to('Pictures', '@dak_picture_admin') ?>
@@ -58,7 +71,7 @@
         <!--  endif authenticated-->
         <?php endif ?> 
         <li>
-          <a href="<?php echo public_path('', true) ?>">Frontend</a>
+          <a href="<?php echo $frontendRoute ?>">Frontend</a>
         </li>
       </ul>        
     </div>

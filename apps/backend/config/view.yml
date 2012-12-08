@@ -12,10 +12,6 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:
-    - ui-lightness/jquery-ui.css
-    - main.css
-
   javascripts:
     - https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js
     - https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js
