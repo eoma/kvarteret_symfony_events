@@ -21,9 +21,12 @@ chmod a+rws web/thumbs
 
 if [ ! -e config/databases.yml ]; then
   php symfony configure:database "sqlite:%SF_DATA_DIR%/db.db";
-  touch data/db.db
-  chmod a+rwx data/db.db
 fi;
 
 # Generate database classes
 php symfony doctrine:build --all-classes --sql
+
+if [ "$1" == "all" ]; then
+  php symfony doctrine:build --db --and-load
+  chmod a+rwx data/db.db
+fi;
