@@ -4,9 +4,6 @@
 [submodule "plugins/sfCKEditorPlugin"]
 	path = plugins/sfCKEditorPlugin
 	url = git://github.com/weaverryan/sfCKEditorPlugin.git
-[submodule "plugins/sfDoctrineGuardPlugin"]
-	path = plugins/sfDoctrineGuardPlugin
-	url = git://github.com/davidsblom/sfDoctrineGuardPlugin.git
 [submodule "plugins/dakEventsPlugin"]
 	path = plugins/dakEventsPlugin
 	url = git://github.com/eoma/dakEventsPlugin.git
@@ -18,4 +15,4 @@
 	url = git://github.com/caefer/sfImageTransformExtraPlugin.git
 [submodule "plugins/sfDoctrineActAsTaggablePlugin"]
 	path = plugins/sfDoctrineActAsTaggablePlugin
-	url = git://github.com/annismckenzie/sfDoctrineActAsTaggablePlugin.git
+	url = https://github.com/JoshuaEstes/sfDoctrineActAsTaggablePlugin.git
