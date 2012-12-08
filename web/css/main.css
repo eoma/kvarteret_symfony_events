@@ -17,11 +17,14 @@ version: 2.6.0
 body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea{font:99% arial,helvetica,clean,sans-serif;outline: none;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
 html {
-  background-color: #48474f;
+  /*background-color: #48474f;*/
+  background-color: #fff;
+  background-image: url('tekstur.png');
 }
 
 a {
-  color: #c30;
+  /*color: #c30;*/
+  color: #000;
 }
 
 ul {
@@ -67,13 +70,16 @@ small {
 
 #menu
 {
-  background-color: #83808f;
+  /*background-color: #83808f;*/
+  background-color: #000;
   width: 60em;
   margin-left: auto;
   margin-right: auto;
   margin-top: 1em;
+  margin-bottom: 1em;
   padding-left: 1em;
   padding-right: 1em;
+  /*color: #fff;*/
   color: #fff;
   line-height: 3em;
 }
@@ -91,6 +97,7 @@ small {
 
 #menu ul li a {
   color: #fff;
+  /*color: #000;*/
   font-weight: bold;
 }
 
@@ -98,8 +105,13 @@ small {
   width: 60em;
   margin-left: auto;
   margin-right: auto;
-  background-color: #bdbacf;
+  /*background-color: #bdbacf;*/
   padding: 1em;
+}
+
+#content {
+  background-color: #fff;
+  border: 1px solid #aaa;
 }
 
 #footer {
@@ -110,3 +122,12 @@ small {
 #content code {
   margin: 1em 1em 1em 2em;
 }
+
+/*** Styles for dakEventsPlugin ***/
+/*.even {
+  background-color: #e8e8e8;
+}
+
+.odd {
+  background-color: #fff;
+}*/
