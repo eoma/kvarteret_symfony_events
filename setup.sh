@@ -26,7 +26,7 @@ fi;
 # Generate database classes
 php symfony doctrine:build --all-classes --sql
 
-if [ "$1" == "all" ]; then
+if [ "$1" = "all" ]; then
   php symfony doctrine:build --db --and-load
   chmod a+rwx data/db.db
 fi;
