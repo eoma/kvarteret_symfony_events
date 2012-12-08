@@ -31,6 +31,20 @@ rm sfDoctrineNestedSetPlugin-1.0.0.tgz
 
 cd $root_dir;
 
+# Download and setup sfDoctrineGuardPlugin, remove previous version if set.
+cd plugins;
+
+if [ -d sfDoctrineGuardPlugin ]; then
+  rm -r sfDoctrineGuardPlugin;
+fi;
+
+wget http://plugins.symfony-project.org/get/sfDoctrineGuardPlugin/sfDoctrineGuardPlugin-5.0.0.tgz
+tar -xzf sfDoctrineGuardPlugin-5.0.0.tgz
+mv sfDoctrineGuardPlugin-5.0.0 sfDoctrineGuardPlugin
+rm sfDoctrineGuardPlugin-5.0.0.tgz
+
+cd $root_dir;
+
 # Download and setup ckeditor
 cd web;
 if [ ! -d js ]; then
