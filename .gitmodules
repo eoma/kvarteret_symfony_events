@@ -1,6 +1,3 @@
-[submodule "lib/vendor/symfony"]
-	path = lib/vendor/symfony
-	url = http://github.com/vjousse/symfony-1.4.git
 [submodule "plugins/sfCKEditorPlugin"]
 	path = plugins/sfCKEditorPlugin
 	url = git://github.com/weaverryan/sfCKEditorPlugin.git
@@ -16,3 +13,6 @@
 [submodule "plugins/sfDoctrineActAsTaggablePlugin"]
 	path = plugins/sfDoctrineActAsTaggablePlugin
 	url = https://github.com/JoshuaEstes/sfDoctrineActAsTaggablePlugin.git
+[submodule "lib/vendor/symfony"]
+	path = lib/vendor/symfony
+	url = https://github.com/symfony/symfony1.git
