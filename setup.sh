@@ -16,12 +16,12 @@ chmod a+rws web/uploads
 mkdir -p web/thumbs
 chmod a+rws web/thumbs
 
-# Generate database classes
-php symfony doctrine:build --all-classes --sql
-
 # We'll confgiure the database if the configuration
 # does not exist
 
 if [ ! -e config/databases.yml ]; then
   php symfony configure:database "sqlite:db.db";
 fi;
+
+# Generate database classes
+php symfony doctrine:build --all-classes --sql
