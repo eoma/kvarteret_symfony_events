@@ -16,7 +16,6 @@ all:
 #        user: admin
 #        pass: test
 #        methodName: someXmlRPCmethodName
-#        arguments: [ user, pass, args ] # default
 #      someSitePing:
 #        type: ping
 #        url: 'http://someaddress/request.php'
