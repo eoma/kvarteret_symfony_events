@@ -7,3 +7,16 @@
 all:
   ckeditor:
     basePath: '/js/ckeditor/'
+
+#  dakEvents:
+#    pingOnUpdate:
+#      someWordpressSite:
+#        url: 'http://someaddress/xmlrpc.php'
+#        type: xmlrpc-wp
+#        user: admin
+#        pass: test
+#        methodName: someXmlRPCmethodName
+#        arguments: [ user, pass, args ] # default
+#      someSitePing:
+#        type: ping
+#        url: 'http://someaddress/request.php'
